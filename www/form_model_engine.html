@@ -1,0 +1,104 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/phonon.css">
+    <link rel="stylesheet" type="text/css" href="css/ionic.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("#insert").click(function(){
+
+            var id=$("#").val();
+            var name=$("#name").val();
+            var qtde=$("#qtde").val();
+            var dataString="id="+id+"&name="+name+"&qtde="+qtde+"&insert=";
+            if($.trim(id).length>0 & $.trim(name).length>0 & $.trim(qtde).length>0)
+            {
+                $.ajax({
+                    type: "POST",
+                    url: "http://www.appr.esy.es/insert.php",
+                    data: dataString,
+                    crossDomain: true,
+                    cache: false,
+                    beforeSend: function(){ $("#insert").val('Connecting...');},
+                    success: function(data){
+                        if(data=="ok")
+                        {
+                            alert("inserted");
+                            $("#insert").val('Insert');
+                        }
+                        else if(data=="error")
+                        {
+                            alert("error");
+                             $("#insert").val('Insert');
+                        }
+                    }
+                });
+            }return false;
+        });
+    });
+    </script>
+
+</head>
+<body>
+    <div class="header-bar">
+        <a class="btn pull-left" href="index.html">Voltar</a>
+        <div class="center">
+            <h1 class="title">Cadastro Motor</h1>
+        </div>
+        <a class="btn pull-right" href="readjson.html">Read Data</a>
+    </div>
+
+    <br/><br/><br/><br/>
+
+    <form oninput="o.value = parseInt(temp.value)" class="list">
+
+      <label class="item item-input">
+          <span class="input-label">Spac Vel:</span>
+          <input type="text" id="model" placeholder="Ex: 0,123"/>
+      </label>
+
+      <div class="item range range-positive">
+          <span class="input-label">Temperatura:</span>
+          <input type="range" id="temp" min="0" max="101" value="33">
+          <output name="o"></output>
+      </div>
+
+      <label class="item item-input">
+          <span class="input-label">O2:</span>
+          <input type="number" id="model" min="0" max="101" placeholder="Ex: 21%"/>
+      </label>
+      <label class="item item-input">
+          <span class="input-label">H2O:</span>
+          <input type="number" id="model" min="0" max="101" placeholder="Ex: 2%"/>
+      </label>
+      <label class="item item-input">
+          <span class="input-label">SO2:</span>
+          <input type="number" id="model" min="0" max="101" placeholder="Ex: 12%"/>
+      </label>
+      <label class="item item-input">
+          <span class="input-label">NO:</span>
+          <input type="number" id="year" placeholder="Ex: 213 ppm"/>
+      </label>
+
+      <label class="item item-input">
+          <span class="input-label">NH3:</span>
+          <input type="number" id="year" placeholder="Ex: 213 ppm"/>
+      </label>
+
+    </form>
+<!--
+        <div class="item">
+            <label>Cilindradas</label>
+            <input type="text" id="cilind" value=""/>
+        </div> -->
+        <br/><br/><br/>
+
+        <div class="item">
+            <!--<button type="button" id="insert" class="button button-block" value="Insert"/>-->
+            <button class="btn fit-parent primary" id="insert">Cadastrar</button>
+        </div>
+    </div>
+
+</body>
+</html>
