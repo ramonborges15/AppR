@@ -81,9 +81,9 @@
     <splash density="port-xxhdpi" src="www/res/screen/android/drawable-port-xxhdpi-screen.png" />
     <splash density="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
     <allow-intent href="market:*" />
-    <name>Hello World</name>
+    <name>Green Engine</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+	Aplicativo de controle e otimização das características físicas de um motor, com o intuito de reduzir a emissão de poluentes.
     </description>
     <author email="support@phonegap.com" href="http://phonegap.com">
         PhoneGap Team

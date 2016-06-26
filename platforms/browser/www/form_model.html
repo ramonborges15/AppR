@@ -1,0 +1,174 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <link rel="stylesheet" type="text/css" href="css/phonon.css">
+    <link rel="stylesheet" type="text/css" href="css/ionic.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("#insert_form").submit(function(){
+
+            var model=$("#model").val();
+            var year=$("#year").val();
+            var cd=$("#cd").val();
+            var spacVel=$("#spacVel").val();
+            var temp=$("#temp").val();
+            var oxyg=$("#oxyg").val();
+            var water=$("#water").val();
+            var dioxSul=$("#dioxSul").val();
+            var oxidNitr=$("#oxidNitr").val();
+            var ammonia=$("#ammonia").val();
+            var dataString="&model="+model+"&year="+year+"&cd="+cd+"&spacVel="+spacVel+"&temp="+temp
+            +"&oxyg="+oxyg+"&water="+water+"&dioxSul="+dioxSul+"&oxidNitr="+oxidNitr+
+            "&ammonia="+ammonia +"&insert=";
+            if($.trim(model).length>0 & $.trim(year).length>0 & $.trim(cd).length>0
+          & $.trim(spacVel).length>0 & $.trim(temp).length>0 & $.trim(oxyg).length>0
+        & $.trim(water).length>0 & $.trim(dioxSul).length>0 & $.trim(oxidNitr).length>0
+      & $.trim(ammonia).length>0)
+            {
+                $.ajax({
+                    type: "POST",
+                    url: "http://www.appr.esy.es/insert.php",
+                    data: dataString,
+                    crossDomain: true,
+                    cache: false,
+                    beforeSend: function(){ $("#insert").val('Conectando...');},
+                    success: function(data){
+                        if(data=="ok")
+                        {
+                            alert("Cadastro realizado com sucesso");
+                            //$("#insert").val('Insert');
+                        }
+                        else if(data=="error")
+                        {
+                            alert("error!");
+                             //$("#insert").val('Insert');
+                        }
+                    }
+                });
+            }return false;
+        });
+    });
+    </script>
+
+</head>
+<!-- a class barscroll é para permitir a barra lateral-->
+<body class="barscroll">
+          <!-- Devemos nos atentar ao que está dentro do BODY, pois isso é
+        importante para mexer com o visual da página-->
+
+  <!-- Tudo que está dentro de header-bar é sobre o menu azul-->
+    <div class="header-bar">
+        <a class="btn pull-left" href="index.html">Voltar</a>
+        <div class="center">
+            <h1 class="title">Cadastro</h1>
+        </div>
+        <a class="btn pull-right" href="readjson.html">Read Data</a>
+    </div>
+<!-- Tudo que está dentro de content está relacionado ao conteúdo da
+página-->
+    <div class="content">
+      <!-- Padded-full centraliza a o conteúdo-->
+      <div class="padded-full">
+
+        <!-- Dentro do form temos os campos que serão preenchidos.
+      oninput é para mostrar o valor da barrinha de temperatura-->
+        <form oninput="o.value = parseInt(temp.value)" class="list" id="insert_form" action="" method="post">
+          <!-- O primeiro título-->
+          <div class="text-center">
+              <h2 class="title">Informações do Carro</h2>
+          </div>
+          <!-- Primeira linha de cadastro que é sobre modelo do carro-->
+          <label class="item item-input">
+              <span class="input-label">Modelo:</span>
+              <input type="text" id="model" placeholder="Ex: Cadillac" pattern="[A-z]+$" required="required" name="text"/>
+          </label>
+
+          <!-- Segunda linha de cadastro que é sobre o ano do carro-->
+          <div>
+          <label class="item item-input">
+              <span class="input-label">Ano:</span>
+              <input type="number" id="year" min="0" placeholder="Ex: 2007" pattern="[0-9]+$" required="required" name="number"/>
+          </label>
+          </div>
+          <!-- Terceira linha de cadastro-->
+          <div>
+          <label class="item item-input">
+              <span class="input-label">Cilindradas:</span>
+              <input type="number" id="cd" min="0" max="10" placeholder="Ex: 1, 4 ou 8 " required="required" name="date" pattern="[1-9]+$"/>
+          </label>
+          </div>
+
+          <br/><hr>
+          <!-- Segundo título do formulário-->
+          <div class="text-center">
+              <h2 class="title">Informações do Motor</h2>
+          </div>
+
+          <!-- Quarta linha de cadastro-->
+          <label class="item item-input">
+              <span class="input-label">Space Velocity:</span>
+              <input id="spacVel" type="number" placeholder="Ex: 0,123" min="0" required="required"
+              name="number" pattern="[0-9]+$" step="any"/>
+          </label>
+
+          <!-- Quinta linha de cadastro-->
+          <div class="item range range-positive">
+              <span class="input-label">Temperatura:</span>
+              <input type="range" id="temp" min="0" max="200" value="33" required="required" name="number" pattern="[0-9]+$">
+              <output name="o"></output>
+          </div>
+          <!-- Sextaa linha de cadastro-->
+          <label class="item item-input small">
+              <span class="input-label">Oxigênio (O2):</span>
+              <input type="number" id="oxyg" min="0" max="100" placeholder="Ex: 21%" required="required" name="number" pattern="[0-9]+$"/>
+          </label>
+          <!-- Setima linha de cadastro-->
+          <label class="item item-input">
+              <span class="input-label">Água (H2O):</span>
+              <input type="number" id="water" min="0" max="100" placeholder="Ex: 2%" required="required" name="number" pattern="[0-9]+$"/>
+          </label>
+          <!-- Oitava linha de cadastro-->
+          <label class="item item-input">
+              <span class="input-label">Dióxido de Enxofre (SO2):</span>
+              <input type="number" id="dioxSul" min="0" max="100" placeholder="Ex: 12%" required="required" name="number" pattern="[0-9]+$"/>
+          </label>
+          <!-- Nona linha de cadastro-->
+          <label class="item item-input">
+              <span class="input-label">Óxido Nítrico (NO):</span>
+              <input type="number" id="oxidNitr" placeholder="Ex: 213 ppm" min="0" required="required" name="number" pattern="[0-9]+$"/>
+          </label>
+          <!-- Decima linha de cadastro-->
+          <label class="item item-input">
+              <span class="input-label">Amônia (NH3):</span>
+              <input type="number" id="ammonia" placeholder="Ex: 213 ppm" min="0" required="required" name="number" pattern="[0-9]+$"/>
+          </label>
+
+          <br/>
+          <!-- Butão para finalizar cadastro-->
+            <div class="padded-full">
+                <button type="submit" class="btn fit-parent primary" value="Cadastrar">Cadastrar</button>
+            </div>
+        </form>
+        </div>
+
+      </div>
+    </div>
+
+
+<!--
+        <div class="item">
+            <label>Cilindradas</label>
+            <input type="text" id="cilind" value=""/>
+        </div> -->
+
+    </div>
+</body>
+</html>
