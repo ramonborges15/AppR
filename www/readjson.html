@@ -1,5 +1,10 @@
 <html>
 <head>
+	<meta charset="utf-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
 	<link rel="stylesheet" type="text/css" href="css/ionic.css">
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript">
@@ -9,10 +14,24 @@
 		$.getJSON(url,function(result){
 			console.log(result);
 	        $.each(result, function(i, field){
-	        	var id=field.id;
-	        	var name=field.name;
-	        	var qtde=field.qtde;
-	            $("#listview").append("<a class='item' href='form.html?id="+id+"&name="+name+"&qtde="+qtde+"'><span class='item-note'>$"+id+"</span><h2>"+ name + " </h2><p>"+ qtde +"</p></a>");
+	        	var model=field.model;
+	        	var year=field.year;
+	        	var cd=field.cd;
+						var spacVel=field.spacVel;
+						var temp=field.temp;
+						var oxyg=field.oxyg;
+						var water=field.water;
+						var dioxSul=field.dioxSul;
+						var oxidNitr=field.oxidNitr;
+						var ammonia=field.ammonia;
+
+	            $("#listview").append(
+								"<a class='item' model="+model+
+								"&year="+year+"&cd="+cd+"'><span class='item-note'>"+year+
+								"</span><h2>"+ model + " </h2><p>"+ cd +" Cd, "+
+								"Space Velocity = "+spacVel+", Temperatura = "+temp+" Cº "+
+								"<br/>Oxigênio = "+oxyg+" %, Água = "+water+" %, Dióxido de Enxofre =  "+dioxSul+" % "+
+								"<br/>Óxido Nítrico = "+oxidNitr+" ppm, Amônia = "+ammonia+" ppm</h2></p></a>");
 	        });
     	});
 	});
@@ -21,9 +40,12 @@
 <body>
 	<div class="bar bar-header bar-positive" style="margin-bottom:80px;">
 		<a href="index.html" class="button button-clear">Home</a>
-		<h1 class="title">Read Database (JSON)</h1>
+		<h1 class="title">Informação</h1>
 	</div><br/><br/>
+
 	<ul class="list" id="listview">
 	</ul>
+
+	<div></div>
 </body>
 </html>

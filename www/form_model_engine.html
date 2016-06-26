@@ -1,5 +1,8 @@
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
     <link rel="stylesheet" type="text/css" href="css/phonon.css">
     <link rel="stylesheet" type="text/css" href="css/ionic.css">
     <script type="text/javascript" src="js/jquery.js"></script>
@@ -55,37 +58,41 @@
 
       <label class="item item-input">
           <span class="input-label">Spac Vel:</span>
-          <input type="text" id="model" placeholder="Ex: 0,123"/>
+          <input id="spac" type="number" placeholder="Ex: 0,123" min="0" required="required" name="number" pattern="[0-9]+$"/>
       </label>
 
       <div class="item range range-positive">
           <span class="input-label">Temperatura:</span>
-          <input type="range" id="temp" min="0" max="101" value="33">
+          <input type="range" id="temp" min="0" max="200" value="33" required="required" name="number" pattern="[0-9]+$">
           <output name="o"></output>
       </div>
 
       <label class="item item-input">
           <span class="input-label">O2:</span>
-          <input type="number" id="model" min="0" max="101" placeholder="Ex: 21%"/>
+          <input type="number" id="oxig" min="0" max="100" placeholder="Ex: 21%" required="required" name="number" pattern="[0-9]+$"/>
       </label>
       <label class="item item-input">
           <span class="input-label">H2O:</span>
-          <input type="number" id="model" min="0" max="101" placeholder="Ex: 2%"/>
+          <input type="number" id="water" min="0" max="100" placeholder="Ex: 2%" required="required" name="number" pattern="[0-9]+$"/>
       </label>
       <label class="item item-input">
           <span class="input-label">SO2:</span>
-          <input type="number" id="model" min="0" max="101" placeholder="Ex: 12%"/>
+          <input type="number" id="enx" min="0" max="100" placeholder="Ex: 12%" required="required" name="number" pattern="[0-9]+$"/>
       </label>
       <label class="item item-input">
           <span class="input-label">NO:</span>
-          <input type="number" id="year" placeholder="Ex: 213 ppm"/>
+          <input type="number" id="nitro" placeholder="Ex: 213 ppm" min="0" required="required" name="number" pattern="[0-9]+$"/>
       </label>
 
       <label class="item item-input">
           <span class="input-label">NH3:</span>
-          <input type="number" id="year" placeholder="Ex: 213 ppm"/>
+          <input type="number" id="amon" placeholder="Ex: 213 ppm" min="0" required="required" name="number" pattern="[0-9]+$"/>
       </label>
 
+      <div class="item">
+          <!--<button type="button" id="insert" class="button button-block" value="Insert"/>-->
+          <button class="btn fit-parent primary">Cadastrar</button>
+      </div>
     </form>
 <!--
         <div class="item">
@@ -94,10 +101,7 @@
         </div> -->
         <br/><br/><br/>
 
-        <div class="item">
-            <!--<button type="button" id="insert" class="button button-block" value="Insert"/>-->
-            <button class="btn fit-parent primary" id="insert">Cadastrar</button>
-        </div>
+
     </div>
 
 </body>
