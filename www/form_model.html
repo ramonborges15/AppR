@@ -44,6 +44,7 @@
                         if(data=="ok")
                         {
                             alert("Cadastro realizado com sucesso");
+                            window.location.href="index.html"
                             //$("#insert").val('Insert');
                         }
                         else if(data=="error")
@@ -114,8 +115,8 @@ página-->
 
           <!-- Quarta linha de cadastro-->
           <label class="item item-input">
-              <span class="input-label">Space Velocity:</span>
-              <input id="spacVel" type="number" placeholder="Ex: 0,123" min="0" required="required"
+              <span class="input-label">Velocidade Espacial:</span>
+              <input id="spacVel" type="number" placeholder="Ex: 11" min="0" required="required"
               name="number" pattern="[0-9]+$" step="any"/>
           </label>
 

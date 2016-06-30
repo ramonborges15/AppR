@@ -9,13 +9,19 @@
     <link rel="stylesheet" type="text/css" href="css/phonon.css">
     <script type="text/javascript" src="js/jquery.js"></script>
 
+    <script type="text/javascript">
+      function Cadastrar() {
+        window.location.href="form_model.html";
+      }
+    </script>
+
 </head>
 
 <body>
     <div class="header-bar">
-        <a class="btn pull-right" href="readjson.html">Read Data</a>
+        <a class="btn pull-right" href="readjson.html">Ler Dados</a>
         <div class="center">
-            <h1 class="title">Green Engine</h1><!---->
+            <h1 class="title">Green Engine</h1>
         </div>
     </div>
 
@@ -29,8 +35,7 @@
             <br/>
             <br/>
             <div class="row text-center">
-                <!--<button class="btn primary" href="form_model_car.html">Cadastrar Info Carro</button>-->
-                <a href="form_model.html" class="btn primary" data-panel-id="myPanelexample" text="text-center">Cadastrar</a>
+                <button class="btn primary" onclick="Cadastrar()">Cadastrar Info Carro</button>
             </div>
           <br/>
           <!--

@@ -5,7 +5,9 @@
 	<meta name="msapplication-tap-highlight" content="no" />
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
 	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+	<link rel="stylesheet" type="text/css" href="css/phonon.css">
 	<link rel="stylesheet" type="text/css" href="css/ionic.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function()
@@ -30,22 +32,28 @@
 								"&year="+year+"&cd="+cd+"'><span class='item-note'>"+year+
 								"</span><h2>"+ model + " </h2><p>"+ cd +" Cd, "+
 								"Space Velocity = "+spacVel+", Temperatura = "+temp+" Cº "+
-								"<br/>Oxigênio = "+oxyg+" %, Água = "+water+" %, Dióxido de Enxofre =  "+dioxSul+" % "+
+								"<br/>Oxigênio = "+oxyg+" %, Água = "+water+" %, <br/>Dióxido de Enxofre =  "+dioxSul+" % "+
 								"<br/>Óxido Nítrico = "+oxidNitr+" ppm, Amônia = "+ammonia+" ppm</h2></p></a>");
 	        });
     	});
 	});
 	</script>
 </head>
-<body>
-	<div class="bar bar-header bar-positive" style="margin-bottom:80px;">
-		<a href="index.html" class="button button-clear">Home</a>
-		<h1 class="title">Informação</h1>
-	</div><br/><br/>
-
+<body class="barscroll">
+	<div class="header-bar">
+			<a class="btn pull-left" href="index.html">Voltar</a>
+			<div class="center">
+					<h1 class="title">Cadastro</h1>
+			</div>
+	</div>
+<div class="content">
 	<ul class="list" id="listview">
 	</ul>
 
-	<div></div>
+	<div>
+
+	</div>
+</div>
+
 </body>
 </html>

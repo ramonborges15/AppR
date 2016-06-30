@@ -1,13 +1,15 @@
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="css/phonon.css">
     <link rel="stylesheet" type="text/css" href="css/ionic.css">
     <script type="text/javascript" src="js/jquery.js"></script>
+
 
     <script type="text/javascript">
     $(document).ready(function() {
         $("#insert").click(function(){
 
-            var id=$("#id").val();
+            var id=$("#").val();
             var name=$("#name").val();
             var qtde=$("#qtde").val();
             var dataString="id="+id+"&name="+name+"&qtde="+qtde+"&insert=";
@@ -40,33 +42,50 @@
 
 </head>
 <body>
-    <div class="bar bar-header bar-positive" style="margin-bottom:80px;">
-
-        <a class="button button-clear" href="index.html">
-          <i class="icon icon-arrow-back with-circle"></i>
-        </a>
-        <h1 class="title">Insert Database</h1>
-        <a class="button button-clear" href="readjson.html">Read Data</a>
+    <div class="header-bar">
+        <a class="btn pull-left" href="index.html">Voltar</a>
+        <div class="center">
+            <h1 class="title">Cadastro Carro</h1>
+        </div>
+        <a class="btn pull-right" href="readjson.html">Read Data</a>
     </div>
 
-    <br/><br/>
+    <br/><br/><br/><br/>
 
     <div class="list">
-        <!-- <input type="hidden" id="id" value=""/> -->
+
+      <label class="item item-input">
+          <span class="input-label">Modelo:</span>
+          <input type="text" id="model" placeholder="Ex: Cadillac"/>
+      </label>
+
+      <label class="item item-input">
+          <span class="input-label">Ano:</span>
+          <input type="date" id="year" placeholder="Ex: 2007"/>
+      </label>
+
+      <label class="item item-input item-select">
+          <div class="input-label">
+              <div class="input-label">Cilindradas:</div>
+              <select>
+                  <option selected>1</option>
+                  <option>4</option>
+                  <option>8</option>
+              </select>
+          </div>
+      </label>
+    </div>
+
+<!--
         <div class="item">
-            <label>ID</label>
-            <input type="text" id="id" value=""/>
-        </div>
+            <label>Cilindradas</label>
+            <input type="text" id="cilind" value=""/>
+        </div> -->
+        <br/><br/><br/>
+
         <div class="item">
-            <label>Name</label>
-            <input type="text" id="name" value=""/>
-        </div>
-        <div class="item">
-            <label>Valor Arrecadado</label>
-            <input type="text" id="qtde" value=""/>
-        </div>
-        <div class="item">
-            <input type="button" id="insert" class="button button-block" value="Insert"/>
+            <!--<button type="button" id="insert" class="button button-block" value="Insert"/>-->
+            <button class="btn fit-parent primary" id="insert">Cadastrar</button>
         </div>
     </div>
 
