@@ -17,7 +17,6 @@
  * under the License.
  */
 
-// Add codigo de redes neurais.
 // definição da rede do classificador
 var redeNeural = new Object();
 redeNeural.rede = new Array();
