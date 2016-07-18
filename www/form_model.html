@@ -64,14 +64,13 @@
 <body class="barscroll">
           <!-- Devemos nos atentar ao que está dentro do BODY, pois isso é
         importante para mexer com o visual da página-->
-
+  <home data-page = "true">
   <!-- Tudo que está dentro de header-bar é sobre o menu azul-->
-    <div class="header-bar">
-        <a class="btn pull-left" href="index.html">Voltar</a>
+    <div class="header-bar" id="colorMain">
+        <a class="btn pull-left icon icon-home" href="index.html"></a>
         <div class="center">
             <h1 class="title">Cadastro</h1>
         </div>
-        <a class="btn pull-right" href="readjson.html">Read Data</a>
     </div>
 <!-- Tudo que está dentro de content está relacionado ao conteúdo da
 página-->
@@ -155,7 +154,7 @@ página-->
           <br/>
           <!-- Butão para finalizar cadastro-->
             <div class="padded-full">
-                <button type="submit" class="btn fit-parent primary" value="Cadastrar">Cadastrar</button>
+                <button type="submit" class="btn fit-parent" id="colorMain" value="Cadastrar">Cadastrar</button>
             </div>
         </form>
         </div>
@@ -169,7 +168,5 @@ página-->
             <label>Cilindradas</label>
             <input type="text" id="cilind" value=""/>
         </div> -->
-
-    </div>
 </body>
 </html>
