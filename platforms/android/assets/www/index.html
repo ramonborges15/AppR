@@ -6,22 +6,68 @@
     <meta name="msapplication-tap-highlight" content="no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
     <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+
+
     <link rel="stylesheet" type="text/css" href="css/phonon.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery-2.2.4.js"></script>
+    <script type="text/javascript">
+      function Cadastrar() {
+        window.location.href="form_model.html";
+      }
+
+      function downloadFile() {
+           var fileTransfer = new FileTransfer();
+           var uri = encodeURI("http://localdeprojetos.esy.es/classif/iris_MLP.class");
+           var fileURL =  "///sdcard/Android/data/com.greenengine.app/files/iris_MLP.txt";
+
+           fileTransfer.download(
+            uri, fileURL, function(entry) {
+               alert("download complete: " + entry.toURL());
+            },
+
+            function(error) {
+               alert("download error source " + error.source);
+               alert("download error target " + error.target);
+               alert("download error code" + error.code);
+            },
+
+            false, {
+               headers: {
+                  "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
+               }
+            }
+         );
+      }
+    </script>
 
 </head>
 
 <body>
-    <div class="header-bar">
-        <a class="btn pull-right" href="readjson.html">Read Data</a>
+
+  <home data-page="true">
+    <!-- Barra Superior -->
+    <div class="header-bar" id="colorMain">
+        <button class="btn pull-right icon icon-menu" data-popover-id="my-popover"></button>
         <div class="center">
-            <h1 class="title">Green Engine</h1><!---->
+            <h1 class="title">Green Engine</h1>
         </div>
     </div>
 
     <br/><br/>
 
+    <!-- Conteúdo -->
     <div class="content">
+
+        <div class="popover" id="my-popover">
+            <ul class="list">
+                <li><a class="padded-list" href="#"></a></li>
+                <li><a class="padded-list" href="readjson.html">Ler Dados</a></li>
+                <li><a class="padded-list" href="make_chart.html">Gerar Gráficos</a></li>
+            </ul>
+        </div>
+
         <div class="padded-full">
             <div class="row text-center">
                 <img src="img/logogreen1.png" alt="EngineGreen">
@@ -29,8 +75,14 @@
             <br/>
             <br/>
             <div class="row text-center">
-                <!--<button class="btn primary" href="form_model_car.html">Cadastrar Info Carro</button>-->
-                <a href="form_model.html" class="btn primary" data-panel-id="myPanelexample" text="text-center">Cadastrar</a>
+                <button class="btn fit-parent" id="colorMain" onclick="Cadastrar()">Cadastrar Info Carro</button>
+            </div><br/>
+            <div class="row text-center">
+              <button class="btn fit-parent" id="colorMain" onclick="downloadFile()">Read File</button>
+            </div><br />
+            <!-- Função dentro do index.js-->
+            <div class="row text-center">
+              <button class="btn fit-parent" id="colorMain" onclick="readLines()">Ler linhas</button><br><br>
             </div>
           <br/>
           <!--
@@ -40,5 +92,28 @@
             </div> -->
         </div>
     </div>
+  </div>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+  <!-- Configurações para listar opções na região superior direita-->
+    <script src="js/phonon-core.js"></script>
+    <script src="js/popovers.js"></script>
+
+    <script>
+
+        phonon.options({
+            navigator: {
+                defaultPage: 'home'
+            },
+            i18n: null
+        });
+        phonon.navigator().start();
+
+    </script>
+
 </body>
 </html>

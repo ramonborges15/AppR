@@ -1,0 +1,122 @@
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="style-src 'self' 'unsafe-inline'; media-src *" />
+    <link rel="stylesheet" type="text/css" href="css/phonon.css">
+    <link rel="stylesheet" type="text/css" href="css/ionic.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="js/Chart.min.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+
+        var model=[];
+        var year, cd, spacVel;
+        var temp=[];
+        var oxyg=[];
+        var water=[];
+        var dioxSul=[];
+        var oxidNitr=[];
+        var ammonia=[];
+
+
+        $(document).ready(function()
+        {
+          var url="http://www.appr.esy.es/json.php";
+          $.getJSON(url,function(result){
+            console.log(result);
+              var i;
+              for(i=0;i<3;i++) {
+                $.each(result, function(i, field){
+                  model[i]=field.model;
+                  year=field.year;
+                  cd=field.cd;
+                  spacVel=field.spacVel;
+                  temp[i]=field.temp;
+                  oxyg[i]=field.oxyg;
+                  water[i]=field.water;
+                  dioxSul[i]=field.dioxSul;
+                  oxidNitr[i]=field.oxidNitr;
+                  ammonia[i]=field.ammonia;
+                });
+              }
+            });
+        });
+
+        function make_chart() {
+            var v1 = document.getElementById("num1").value;
+            var v2 = document.getElementById("num2").value;
+
+            var options = {
+                responsive:true,
+                multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
+
+            };
+
+            var data = {
+                labels: ["Temp.", "O2", "H2O", "SO2", "NO", "NH3"],
+                datasets: [
+                {
+                    label: model[v1],
+                    fillColor: "rgba(255,255,0,0.5)",
+                    strokeColor: "rgba(220,220,220,0.8)",
+                    highlightFill: "rgba(220,220,220,0.75)",
+                    highlightStroke: "rgba(220,220,220,1)",
+                    data: [temp[v1]*1, oxyg[v1]*1, water[v1]*1, dioxSul[v1]*1, oxidNitr[v1]*1, ammonia[v1]*1]
+                },
+                {
+                    label: model[v2],
+                    fillColor: "rgba(151,187,205,0.5)",
+                    strokeColor: "rgba(151,187,205,0.8)",
+                    highlightFill: "rgba(151,187,205,0.75)",
+                    highlightStroke: "rgba(151,187,205,1)",
+                    data: [temp[v2]*1, oxyg[v2]*1, water[v2]*1, dioxSul[v2]*1, oxidNitr[v2]*1, ammonia[v2]*1]
+                    }
+                ]
+            };
+
+                var ctx = document.getElementById("GraficoBarra").getContext("2d");
+                var BarChart = new Chart(ctx).Bar(data, options);
+
+        }
+    </script>
+
+
+</head>
+
+<body class="barscroll">
+    <!-- Barra Superior-->
+    <div class="header-bar" id="colorMain">
+        <a class="btn pull-left icon icon-home" href="index.html"></a>
+        <div class="center">
+            <h1 class="title">Gráficos</h1>
+        </div>
+    </div>
+
+    <!-- Conteúdo-->
+    <div class="content">
+        <div class="padded-full">
+          <br/><br/>
+          <div class="box">
+
+            <div class="box-chart">
+              <canvas id="GraficoBarra"></canvas>
+            </div>
+            <br/><br/><br/><br/><br/>
+            Automóvel 1 (Amarelo):
+            <input type="number" id="num1" placeholder="Informe um número">
+            Automóvel 2 (Azul):
+            <input type="number" id="num2" placeholder="Informe um outro número">
+            <button class="btn fit-parent" id="colorMain" onClick="make_chart()">Gerar</button>
+
+          </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
