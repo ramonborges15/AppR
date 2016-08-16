@@ -16,30 +16,6 @@
       function Cadastrar() {
         window.location.href="form_model.html";
       }
-
-      function downloadFile() {
-           var fileTransfer = new FileTransfer();
-           var uri = encodeURI("http://localdeprojetos.esy.es/classif/iris_MLP.class");
-           var fileURL =  "///sdcard/Android/data/com.greenengine.app/files/iris_MLP.txt";
-
-           fileTransfer.download(
-            uri, fileURL, function(entry) {
-               alert("download complete: " + entry.toURL());
-            },
-
-            function(error) {
-               alert("download error source " + error.source);
-               alert("download error target " + error.target);
-               alert("download error code" + error.code);
-            },
-
-            false, {
-               headers: {
-                  "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-               }
-            }
-         );
-      }
     </script>
 
 </head>
@@ -78,11 +54,11 @@
                 <button class="btn fit-parent" id="colorMain" onclick="Cadastrar()">Cadastrar Info Carro</button>
             </div><br/>
             <div class="row text-center">
-              <button class="btn fit-parent" id="colorMain" onclick="downloadFile()">Read File</button>
+              <button class="btn fit-parent" id="colorMain" onclick="downloadfiles()">Atualizar Classificador</button>
             </div><br />
             <!-- Função dentro do index.js-->
             <div class="row text-center">
-              <button class="btn fit-parent" id="colorMain" onclick="readLines()">Ler linhas</button><br><br>
+              <button class="btn fit-parent" id="colorMain" onclick="executeProgram()">Executa Teste</button><br><br>
             </div>
           <br/>
           <!--
