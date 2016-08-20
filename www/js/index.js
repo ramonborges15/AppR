@@ -943,3 +943,50 @@ function executeProgram(){
             }, 300);
 
 }
+
+function executeProgramWithTrueData(a,b,c,d,e,f,g){
+            fncIA_MLP_CarregaClassificadorNox();
+            fncIA_MLP_CarregaClassificadorAmonia();
+            fncIA_MLP_CarregaClassificadorOxidoNitroso();
+
+            setTimeout(function(){
+                //alert("Numero camadas" + redeNeural0.num_camadas);
+
+                // ------> TESTE
+                //->Instancia para teste
+                //Spacvel(h-1)	Temp (ºC) O2(%) H2O(%) SO2(ppm) NO(ppm) NH3(ppm)         NOx NH3 N2O
+                var teste = new Object();
+                teste.insts = new Array();
+
+                for(i=0; i<1; i++){
+                    teste.insts[i] = new Object();
+                    teste.insts[i].atributos = new Array(a,b,c,d,e,f,g);
+                    teste.insts[i].classe = 1;
+                    teste.insts[i].peso = 0.166;
+                }
+
+                teste.num_classes = 3;
+                teste.num_instancias = 1;
+                teste.num_atributos = 7;
+                teste.flagPesoSaida = true;
+                redeNeural0.flagPesoSaida = true;
+                redeNeural1.flagPesoSaida = true;
+                redeNeural2.flagPesoSaida = true;
+                // ------> FIM TESTE
+
+
+                fncIA_MLP_ExecutaAlgoritmoDeTesteNox(teste);
+                fncIA_MLP_ExecutaAlgoritmoDeTesteAmonia(teste);
+                fncIA_MLP_ExecutaAlgoritmoDeTesteOxidoNitroso(teste);
+                /*
+                for (b=0; b<redeNeural.num_camadas; b++) {
+                    for (c=0; c<redeNeural.qtd_neuronios[b]; c++) {
+                        for(d=0; d<4; d++){
+                            alert("Camada: " + b + " -> Neuronio: " + c + " -> peso" + d + ": " + redeNeural.rede[b][c].w[d] + "Com bias: " + redeNeural.rede[b][c].bias);
+                        }
+                    }
+                }*/
+
+            }, 300);
+
+}
