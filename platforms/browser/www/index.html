@@ -17,42 +17,72 @@
         window.location.href="form_model.html";
       }
 
-      function downloadFile() {
-           var fileTransfer = new FileTransfer();
-           var uri = encodeURI("http://localdeprojetos.esy.es/classif/iris_MLP.class");
-           var fileURL =  "///sdcard/Android/data/com.greenengine.app/files/iris_MLP.txt";
+      //jquery
+      $(function($) {
+        $('#test').click(function(){
 
-           fileTransfer.download(
-            uri, fileURL, function(entry) {
-               alert("download complete: " + entry.toURL());
-            },
-
-            function(error) {
-               alert("download error source " + error.source);
-               alert("download error target " + error.target);
-               alert("download error code" + error.code);
-            },
-
-            false, {
-               headers: {
-                  "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-               }
-            }
-         );
-      }
+          var a = $('#ve').val();
+          var b = $('#temp').val();
+          var c = $('#ox').val();
+          var d = $('#agua').val();
+          var e = $('#de').val();
+          var f = $('#oxidn').val();
+          var g = $('#amon').val();
+          executeProgramWithTrueData(a,b,c,d,e,f,g);
+        });
+      });
     </script>
 
 </head>
 
 <body>
 
+  <div id="full-panel-example" class="panel-full">
+      <header class="header-bar" id="colorMain">
+          <button class="btn pull-right icon icon-close" data-panel-close="true"></button>
+          <div class="center">
+              <h1 class="title">Teste</h1>
+          </div>
+      </header>
+
+      <div class="content">
+        <div class="padded-full">
+
+          <div class="text-center">
+            <h2 class="title">Insira as informações abaixo:</h2>
+          </div>
+
+          <input type="number" id="ve" required="required" placeholder="Velocidade Especial">
+          <input type="number" id="temp" required="required" min="0" max="100" pattern="[0-9]+$"
+          placeholder="Temperatura (°C)">
+          <input type="number" id="ox" required="required" min="0" max="100" pattern="[0-9]+$"
+          placeholder="Oxigênio (%)">
+          <input type="number" id="agua" required="required" min="0" max="100" pattern="[0-9]+$"
+          placeholder="Água (%)">
+          <input type="number" id="de" required="required" min="0" max="100" pattern="[0-9]+$"
+          placeholder="Dióxido Enxofre (%)">
+          <input type="number" id="oxidn" required="required" pattern="[0-9]+$" placeholder="Óxido Nítrico (ppm)">
+          <input type="number" id="amon" required="required" pattern="[0-9]+$" placeholder="Amônia (ppm)">
+
+          <br/>
+          <!-- Butão para finalizar cadastro-->
+          <div class="padded-full">
+            <button type="submit" class="btn fit-parent" id="test">Testar</button>
+          </div>
+
+        </div>
+      </div>
+  </div>
+
   <home data-page="true">
     <!-- Barra Superior -->
     <div class="header-bar" id="colorMain">
-        <button class="btn pull-right icon icon-menu" data-popover-id="my-popover"></button>
+        <a class="btn pull-left" data-panel-id="full-panel-example">Teste</a>
         <div class="center">
             <h1 class="title">Green Engine</h1>
         </div>
+        <button class="btn pull-right icon icon-menu" data-popover-id="my-popover"></button>
+
     </div>
 
     <br/><br/>
@@ -78,11 +108,11 @@
                 <button class="btn fit-parent" id="colorMain" onclick="Cadastrar()">Cadastrar Info Carro</button>
             </div><br/>
             <div class="row text-center">
-              <button class="btn fit-parent" id="colorMain" onclick="downloadFile()">Read File</button>
+              <button class="btn fit-parent" id="colorMain" onclick="downloadfiles()">Atualizar Classificador</button>
             </div><br />
             <!-- Função dentro do index.js-->
             <div class="row text-center">
-              <button class="btn fit-parent" id="colorMain" onclick="readLines()">Ler linhas</button><br><br>
+              <button class="btn fit-parent" id="colorMain" onclick="executeProgram()">Executa Teste</button><br><br>
             </div>
           <br/>
           <!--
@@ -102,6 +132,7 @@
   <!-- Configurações para listar opções na região superior direita-->
     <script src="js/phonon-core.js"></script>
     <script src="js/popovers.js"></script>
+    <script src="js/panels.js"></script>
 
     <script>
 
