@@ -16,19 +16,96 @@
       function Cadastrar() {
         window.location.href="form_model.html";
       }
+
+      //jquery
+      $(function($) {
+        $('#test').click(function(){
+
+          var a = $('#ve').val();
+          var b = $('#temp').val();
+          var c = $('#ox').val();
+          var d = $('#agua').val();
+          var e = $('#de').val();
+          var f = $('#oxidn').val();
+          var g = $('#amon').val();
+          
+          
+          $(document).ready(function() {
+            $.ajax({
+                type: "GET",
+                url: "http://localdeprojetos.esy.es/maximus.php",
+                crossDomain: true,
+                cache: false,
+                success: function(result){
+                    var result=$.parseJSON(result);
+                    normalizado_a = a/result.max_velocidade_espacial;
+                    normalizado_b = b/result.max_temperatura;
+                    normalizado_c = c/result.max_oxigenio;
+                    normalizado_d = d/result.max_agua;
+                    normalizado_e = e/result.max_dioxido_de_enxofre;
+                    normalizado_f = f/result.max_oxido_nitrico;
+                    normalizado_g = g/result.max_amonia;
+                }
+            });
+          });
+          //alert("Vel: "+ normalizado_a + " temp: "+ normalizado_b + " ox: " + normalizado_c + " agua: " + normalizado_d + "de: " + normalizado_e + "oxidn: " + normalizado_f + "amon: " + normalizado_g);
+          
+          executeProgramWithTrueData(normalizado_a,normalizado_b,normalizado_c,normalizado_d,normalizado_e,normalizado_f,normalizado_g);
+        });
+      });
+        
     </script>
 
 </head>
 
 <body>
 
+  <div id="full-panel-example" class="panel-full">
+      <header class="header-bar" id="colorMain">
+          <button class="btn pull-right icon icon-close" data-panel-close="true"></button>
+          <div class="center">
+              <h1 class="title">Teste</h1>
+          </div>
+      </header>
+
+      <div class="content">
+        <div class="padded-full">
+
+          <div class="text-center">
+            <h2 class="title">Insira as informações abaixo:</h2>
+          </div>
+
+          <input type="number" id="ve" required="required" placeholder="Velocidade Especial">
+          <input type="number" id="temp" required="required" min="0" max="100" pattern="[0-9]+$"
+          placeholder="Temperatura (°C)">
+          <input type="number" id="ox" required="required" min="0" max="100" pattern="[0-9]+$"
+          placeholder="Oxigênio (%)">
+          <input type="number" id="agua" required="required" min="0" max="100" pattern="[0-9]+$"
+          placeholder="Água (%)">
+          <input type="number" id="de" required="required" min="0" max="100" pattern="[0-9]+$"
+          placeholder="Dióxido Enxofre (%)">
+          <input type="number" id="oxidn" required="required" pattern="[0-9]+$" placeholder="Óxido Nítrico (ppm)">
+          <input type="number" id="amon" required="required" pattern="[0-9]+$" placeholder="Amônia (ppm)">
+
+          <br/>
+          <!-- Butão para finalizar cadastro-->
+          <div class="padded-full">
+            <button type="submit" class="btn fit-parent" id="test">Testar</button>
+          </div>
+
+        </div>
+      </div>
+  </div>
+
   <home data-page="true">
     <!-- Barra Superior -->
     <div class="header-bar" id="colorMain">
-        <button class="btn pull-right icon icon-menu" data-popover-id="my-popover"></button>
+        <a class="btn pull-left" data-panel-id="full-panel-example">Teste</a>
         <div class="center">
             <h1 class="title">Green Engine</h1>
         </div>
+        <button class="btn pull-right icon icon-menu" data-popover-id="my-popover"></button>
+
     </div>
 
     <br/><br/>
@@ -54,11 +131,11 @@
                 <button class="btn fit-parent" id="colorMain" onclick="Cadastrar()">Cadastrar Info Carro</button>
             </div><br/>
             <div class="row text-center">
-                <button class="btn fit-parent" id="colorMain" onclick="downloadFiles()">Atualizar classificadores</button>
+              <button class="btn fit-parent" id="colorMain" onclick="downloadfiles()">Atualizar Classificador</button>
             </div><br />
             <!-- Função dentro do index.js-->
             <div class="row text-center">
-                <button class="btn fit-parent" id="colorMain" onclick="executeProgram()">Executar Teste</button><br><br>
+              <button class="btn fit-parent" id="colorMain" onclick="executeProgram()">Executa Teste</button><br><br>
             </div>
           <br/>
           <!--
@@ -78,6 +155,7 @@
   <!-- Configurações para listar opções na região superior direita-->
     <script src="js/phonon-core.js"></script>
     <script src="js/popovers.js"></script>
+    <script src="js/panels.js"></script>
 
     <script>
 
