@@ -13,22 +13,46 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/jquery-2.2.4.js"></script>
     <script type="text/javascript">
+        var a,b,c,d,e,f,g;
       function Cadastrar() {
         window.location.href="form_model.html";
       }
-
+    
       //jquery
       $(function($) {
         $('#test').click(function(){
-
-          var a = $('#ve').val();
-          var b = $('#temp').val();
-          var c = $('#ox').val();
-          var d = $('#agua').val();
-          var e = $('#de').val();
-          var f = $('#oxidn').val();
-          var g = $('#amon').val();
-          executeProgramWithTrueData(a,b,c,d,e,f,g);
+          a = $('#ve').val();
+          b = $('#temp').val();
+          c = $('#ox').val();
+          d = $('#agua').val();
+          e = $('#de').val();
+          f = $('#oxidn').val();
+          g = $('#amon').val();
+        });
+      });
+          
+          
+          $(document).ready(function() {
+            $.ajax({
+                type: "GET",
+                url: "http://localdeprojetos.esy.es/maximus.php",
+                crossDomain: true,
+                cache: false,
+                success: function(result){
+                    var result=$.parseJSON(result);
+                    normalizado_a = a/result.max_velocidade_espacial;
+                    normalizado_b = b/result.max_temperatura;
+                    normalizado_c = c/result.max_oxigenio;
+                    normalizado_d = d/result.max_agua;
+                    normalizado_e = e/result.max_dioxido_de_enxofre;
+                    normalizado_f = f/result.max_oxido_nitrico;
+                    normalizado_g = g/result.max_amonia;
+                }
+            });
+          });
+          //alert("Vel: "+ normalizado_a + " temp: "+ normalizado_b + " ox: " + normalizado_c + " agua: " + normalizado_d + "de: " + normalizado_e + "oxidn: " + normalizado_f + "amon: " + normalizado_g);
+          
+          executeProgramWithTrueData(normalizado_a,normalizado_b,normalizado_c,normalizado_d,normalizado_e,normalizado_f,normalizado_g);
         });
       });
     </script>

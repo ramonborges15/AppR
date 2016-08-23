@@ -74,66 +74,6 @@ var app = {
         console.log('Received Event: ' + id);
     }
 }
-function readFile(){
-    alert("Entrou para leitura!");
-    window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(dir){
-            dir.getFile("nox.txt", {create: false}, function(fileEntry){
-                fileEntry.file(function(file){
-                    var reader = new FileReader();
-                    reader.onloadend = readSuccess;
-                    function readSuccess(evt) {
-                        alert("Conteudo:" + reader.result);
-                         var linhas = file.split('\n');
-                    };
-                    reader.readAsText(file);
-                }, function(error){
-                    alert("Error: " + error.code);
-                });
-            }, function(error){
-                alert("Error: " + error.code);
-            });
-    }, function(){
-        alert("Error");
-    });
-    window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(dir){
-            dir.getFile("amonia.txt", {create: false}, function(fileEntry){
-                fileEntry.file(function(file){
-                    var reader = new FileReader();
-                    reader.onloadend = readSuccess;
-                    function readSuccess(evt) {
-                        alert("Conteudo:" + reader.result);
-                         var linhas = file.split('\n');
-                    };
-                    reader.readAsText(file);
-                }, function(error){
-                    alert("Error: " + error.code);
-                });
-            }, function(error){
-                alert("Error: " + error.code);
-            });
-    }, function(){
-        alert("Error");
-    });
-    window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(dir){
-            dir.getFile("oxido_nitroso.txt", {create: false}, function(fileEntry){
-                fileEntry.file(function(file){
-                    var reader = new FileReader();
-                    reader.onloadend = readSuccess;
-                    function readSuccess(evt) {
-                        alert("Conteudo:" + reader.result);
-                         var linhas = file.split('\n');
-                    };
-                    reader.readAsText(file);
-                }, function(error){
-                    alert("Error: " + error.code);
-                });
-            }, function(error){
-                alert("Error: " + error.code);
-            });
-    }, function(){
-        alert("Error");
-    });
-}
 
 // Carrega o classificador a partir de um arquivo.
 function fncIA_MLP_CarregaClassificadorNox(){
@@ -824,7 +764,7 @@ function mostrarProps(obj, nomeDoObj) {
 function downloadnox() {
              var fileTransfer = new FileTransfer();
              var uri = encodeURI("http://localdeprojetos.esy.es/classif/nox.class");
-             var fileURL =  "///sdcard/Android/data/com.greenproject.app/files/nox.txt";
+             var fileURL =  "///sdcard/Android/data/com.greenengine.app/files/nox.txt";
 
              fileTransfer.download(
               uri, fileURL, function(entry) {
@@ -847,7 +787,7 @@ function downloadnox() {
 function downloadamonia() {
              var fileTransfer = new FileTransfer();
              var uri = encodeURI("http://localdeprojetos.esy.es/classif/amonia.class");
-             var fileURL =  "///sdcard/Android/data/com.greenproject.app/files/amonia.txt";
+             var fileURL =  "///sdcard/Android/data/com.greenengine.app/files/amonia.txt";
 
              fileTransfer.download(
               uri, fileURL, function(entry) {
@@ -870,7 +810,7 @@ function downloadamonia() {
 function downloadoxidonitroso() {
              var fileTransfer = new FileTransfer();
              var uri = encodeURI("http://localdeprojetos.esy.es/classif/oxido_nitroso.class");
-             var fileURL =  "///sdcard/Android/data/com.greenproject.app/files/oxido_nitroso.txt";
+             var fileURL =  "///sdcard/Android/data/com.greenengine.app/files/oxido_nitroso.txt";
 
              fileTransfer.download(
               uri, fileURL, function(entry) {
@@ -948,7 +888,7 @@ function executeProgramWithTrueData(a,b,c,d,e,f,g){
             fncIA_MLP_CarregaClassificadorNox();
             fncIA_MLP_CarregaClassificadorAmonia();
             fncIA_MLP_CarregaClassificadorOxidoNitroso();
-
+            
             setTimeout(function(){
                 //alert("Numero camadas" + redeNeural0.num_camadas);
 
@@ -987,6 +927,6 @@ function executeProgramWithTrueData(a,b,c,d,e,f,g){
                     }
                 }*/
 
-            }, 300);
+            }, 500);
 
 }
