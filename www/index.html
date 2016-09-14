@@ -12,57 +12,51 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/jquery-2.2.4.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript">
         function Chart(){
-          window.location.href="make_chart.html";
+          window.location.href="make_chart_comparative.html";
         }
     </script>
 
     <script type="text/javascript">
-      var a,b,c,d,e,f,g;
-      //jquery
-      $(function($) {
-        $('#test').click(function(){
-          a = $('#ve').val();
-          b = $('#temp').val();
-          c = $('#ox').val();
-          d = $('#agua').val();
-          e = $('#de').val();
-          f = $('#oxidn').val();
-          g = $('#amon').val();
-        });
-      });
 
+        var normalizado_a, normalizado_b, normalizado_c, normalizado_d;
+        var normalizado_e, normalizado_f, normalizado_g;
+        //jquery
 
-          $(document).ready(function() {
-            $.ajax({
-                type: "GET",
-                url: "http://localdeprojetos.esy.es/maximus.php",
-                crossDomain: true,
-                cache: false,
-                success: function(result){
-                    var result=$.parseJSON(result);
-                    normalizado_a = a/result.max_velocidade_espacial;
-                    normalizado_b = b/result.max_temperatura;
-                    normalizado_c = c/result.max_oxigenio;
-                    normalizado_d = d/result.max_agua;
-                    normalizado_e = e/result.max_dioxido_de_enxofre;
-                    normalizado_f = f/result.max_oxido_nitrico;
-                    normalizado_g = g/result.max_amonia;
-                }
+        function executarTeste() {
+            $(document).ready(function() {
+                $.ajax({
+                    type: "GET",
+                        url: "http://greenengine.esy.es/maximus.php",
+                        crossDomain: true,
+                        cache: false,
+                        success: function(result){
+                            var result=$.parseJSON(result);
+                            normalizado_a = document.getElementById('#ve').value() /result.max_velocidade_espacial;
+                            normalizado_b = document.getElementById('#temp').value() /result.max_temperatura;
+                            normalizado_c = document.getElementById('#ox').value() /result.max_oxigenio;
+                            normalizado_d = document.getElementById('#agua').value() /result.max_agua;
+                            normalizado_e = document.getElementById('#de').value() /result.max_dioxido_de_enxofre;
+                            normalizado_f = document.getElementById('#oxidn').value() /result.max_oxido_nitrico;
+                            normalizado_g = document.getElementById('#amon').value() /result.max_amonia;
+                        }
+                    });
             });
-          });
-          //alert("Vel: "+ normalizado_a + " temp: "+ normalizado_b + " ox: " + normalizado_c + " agua: " + normalizado_d + "de: " + normalizado_e + "oxidn: " + normalizado_f + "amon: " + normalizado_g);
+              //alert("Vel: "+ normalizado_a + " temp: "+ normalizado_b + " ox: " + normalizado_c + " agua: " + normalizado_d + "de: " + normalizado_e + "oxidn: " + normalizado_f + "amon: " + normalizado_g);
 
-          executeProgramWithTrueData(normalizado_a,normalizado_b,normalizado_c,normalizado_d,normalizado_e,normalizado_f,normalizado_g);
-        });
-      });
+            executeProgramWithTrueData(normalizado_a,normalizado_b,normalizado_c,normalizado_d,normalizado_e,normalizado_f,normalizado_g);
+        }
+
     </script>
 
 </head>
 
 <body>
-  <!-- Estrutura de Teste-->
+
+  <!-- Formulário para o Teste-->
   <div id="full-panel-example" class="panel-full">
       <header class="header-bar" id="colorMain">
           <button class="btn pull-right icon icon-close" data-panel-close="true"></button>
@@ -131,7 +125,7 @@
           <br/>
           <!-- Butão para finalizar cadastro-->
           <div class="padded-full">
-            <button type="submit" class="btn fit-parent" id="test">Testar</button>
+            <button type="submit" class="btn fit-parent" onclick="executarTeste()">Testar</button>
           </div>
 
         </div>
@@ -194,14 +188,13 @@
     </div>
   </div>
 
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
     </script>
   <!-- Configurações para listar opções na região superior direita-->
     <script src="js/phonon-core.js"></script>
     <script src="js/popovers.js"></script>
+
     <script src="js/panels.js"></script>
 
     <script>
