@@ -27,46 +27,8 @@
     <script type="text/javascript" src="js/make_chart.js"></script>
 
     <script type="text/javascript">
-        function Chart(){
-            gerarGrafico();
-        }
-        function reload() {
-            location.reload();
-        }
         function nextpage() {
             window.location.href = "make_chart_comparative.html";
-        }
-
-    </script>
-
-    <script type="text/javascript">
-
-        var normalizado_a, normalizado_b, normalizado_c, normalizado_d;
-        var normalizado_e, normalizado_f, normalizado_g;
-        //jquery
-
-        function executarTeste() {
-            $(document).ready(function() {
-                $.ajax({
-                    type: "GET",
-                        url: "http://greenengine.esy.es/maximus.php",
-                        crossDomain: true,
-                        cache: false,
-                        success: function(result){
-                            var result=$.parseJSON(result);
-                            normalizado_a = document.getElementById('#ve').value() /result.max_velocidade_espacial;
-                            normalizado_b = document.getElementById('#temp').value() /result.max_temperatura;
-                            normalizado_c = document.getElementById('#ox').value() /result.max_oxigenio;
-                            normalizado_d = document.getElementById('#agua').value() /result.max_agua;
-                            normalizado_e = document.getElementById('#de').value() /result.max_dioxido_de_enxofre;
-                            normalizado_f = document.getElementById('#oxidn').value() /result.max_oxido_nitrico;
-                            normalizado_g = document.getElementById('#amon').value() /result.max_amonia;
-                        }
-                    });
-            });
-              //alert("Vel: "+ normalizado_a + " temp: "+ normalizado_b + " ox: " + normalizado_c + " agua: " + normalizado_d + "de: " + normalizado_e + "oxidn: " + normalizado_f + "amon: " + normalizado_g);
-
-            executeProgramWithTrueData(normalizado_a,normalizado_b,normalizado_c,normalizado_d,normalizado_e,normalizado_f,normalizado_g);
         }
 
     </script>
@@ -78,13 +40,9 @@
   <home data-page="true">
     <!-- Barra Superior -->
     <div class="header-bar" id="colorMain">
-        <!-- <a class="btn pull-left" data-panel-id="full-panel-example">Teste</a>-->
         <div class="center">
             <h1 class="title">Green Engine</h1>
         </div>
-        <!--
-        <button class="btn pull-right icon icon-menu" data-popover-id="my-popover"></button>
-        -->
     </div>
 
     <br/><br/>
@@ -114,6 +72,11 @@
         </div>
     </div>
 
+    <div class="footer">
+        <ul class="list">
+            <li class="divider"></li>
+        </ul>
+    </div>
 
   </div>
 
@@ -132,11 +95,6 @@
         phonon.options({
             navigator: {
                 defaultPage: 'home',
-                /*
-                animatePages: true,
-                templateRootDirectory: 'contents/',
-                enableBrowserBackButton: true // should be disabled on Cordova
-                */
             },
             i18n: null
         });

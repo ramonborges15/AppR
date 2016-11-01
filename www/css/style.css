@@ -34,3 +34,39 @@
     padding-top: 0;
     margin-bottom: 0;
 }
+
+#backgroundStyle {
+    background: #DCDCDC;
+    background: linear-gradient(#DCDCDC, #3CB371);
+}
+
+.footer {
+	position:absolute;
+	bottom:0;
+	width:100%;
+}
+
+/*Cards*/
+.w3-card-2 .card{
+    box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    background-color: white;
+}
+
+.w3-card-2 .cardMenu{
+    box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    background-color: white;
+}
+
+.w3-card-2 .graph{
+    box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
+    background-color: white;
+    padding-left: 1%;
+    padding-bottom: 10%;
+    padding-top: 10%;
+}
