@@ -78,7 +78,7 @@ var app = {
 // Carrega o classificador a partir de um arquivo.
 function fncIA_MLP_CarregaClassificadorNox(){
     window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(dir){
-            dir.getFile("nox.txt", {create: false}, function(fileEntry){
+            dir.getFile("classif/mlp/saida_1.txt", {create: false}, function(fileEntry){
                 fileEntry.file(function(file){
                     var reader = new FileReader();
 
@@ -209,8 +209,8 @@ function fncIA_MLP_ExecutaAlgoritmoDeTesteNox(obj){
 
 		// Codifica a saida da rede.
 		saidaRNA = 0;
-		for(n = 0; n < redeNeural0.qtd_neuronios[c]; n++) {
-			if (redeNeural0.rede[c][n].saida > 0.5) {
+		for(n = 0; n < redeNeural0.qtd_neuronios[c-1]; n++) {
+			if (redeNeural0.rede[c-1][n].saida > 0.5) {
 				saidaRNA += Math.pow(2,n);
 			}
 		}
@@ -236,15 +236,18 @@ function fncIA_MLP_ExecutaAlgoritmoDeTesteNox(obj){
 			den_classe[obj.insts[i].classe]++;
                 }*/
 	}
-	if(saidaRNA == 0){
-            alert("Pouca poluição de nox!");
-        }
-        if(saidaRNA == 1){
-            alert("Média poluição de nox");
-        }
-        if(saidaRNA == 2){
-            alert("Muita poluição de nox");
-        }
+  if(saidaRNA == 0){
+      alert("Nenhuma poluição de nox");
+  }
+	if(saidaRNA == 1){
+      alert("Pouca poluição de nox!");
+  }
+  if(saidaRNA == 2){
+      alert("Média poluição de nox");
+  }
+  if(saidaRNA == 3){
+      alert("Muita poluição de nox");
+  }
 	/*
 	if (den_geral > 0.0) {
 		// Define o erro medio das classes.
@@ -302,7 +305,7 @@ function fncIA_MLP_BackPropagation_PropagaSinalNox(vetor_atributos, num_atributo
 // Carrega o classificador a partir de um arquivo.
 function fncIA_MLP_CarregaClassificadorAmonia(){
     window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(dir){
-            dir.getFile("amonia.txt", {create: false}, function(fileEntry){
+            dir.getFile("classif/mlp/saida_2.txt", {create: false}, function(fileEntry){
                 fileEntry.file(function(file){
                     var reader = new FileReader();
 
@@ -433,8 +436,8 @@ function fncIA_MLP_ExecutaAlgoritmoDeTesteAmonia(obj){
 
 		// Codifica a saida da rede.
 		saidaRNA = 0;
-		for(n = 0; n < redeNeural1.qtd_neuronios[c]; n++) {
-			if (redeNeural1.rede[c][n].saida > 0.5) {
+		for(n = 0; n < redeNeural1.qtd_neuronios[c-1]; n++) {
+			if (redeNeural1.rede[c-1][n].saida > 0.5) {
 				saidaRNA += Math.pow(2,n);
 			}
 		}
@@ -460,15 +463,18 @@ function fncIA_MLP_ExecutaAlgoritmoDeTesteAmonia(obj){
 			den_classe[obj.insts[i].classe]++;
                 }*/
 	}
-	if(saidaRNA == 0){
-            alert("Pouca poluição de amonia!");
-        }
-        if(saidaRNA == 1){
-            alert("Média poluição de amonia");
-        }
-        if(saidaRNA == 2){
-            alert("Muita poluição de amonia");
-        }
+  if(saidaRNA == 0){
+      alert("Nenhuma poluição de amonia");
+  }
+	if(saidaRNA == 1){
+      alert("Pouca poluição de amonia!");
+  }
+  if(saidaRNA == 2){
+      alert("Média poluição de amonia");
+  }
+  if(saidaRNA == 3){
+      alert("Muita poluição de amonia");
+  }
 	/*
 	if (den_geral > 0.0) {
 		// Define o erro medio das classes.
@@ -526,7 +532,7 @@ function fncIA_MLP_BackPropagation_PropagaSinalAmonia(vetor_atributos, num_atrib
 // Carrega o classificador a partir de um arquivo.
 function fncIA_MLP_CarregaClassificadorOxidoNitroso(){
     window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(dir){
-            dir.getFile("oxido_nitroso.txt", {create: false}, function(fileEntry){
+            dir.getFile("classif/mlp/saida_3.txt", {create: false}, function(fileEntry){
                 fileEntry.file(function(file){
                     var reader = new FileReader();
 
@@ -657,8 +663,8 @@ function fncIA_MLP_ExecutaAlgoritmoDeTesteOxidoNitroso(obj){
 
 		// Codifica a saida da rede.
 		saidaRNA = 0;
-		for(n = 0; n < redeNeural2.qtd_neuronios[c]; n++) {
-			if (redeNeural2.rede[c][n].saida > 0.5) {
+		for(n = 0; n < redeNeural2.qtd_neuronios[c-1]; n++) {
+			if (redeNeural2.rede[c-1][n].saida > 0.5) {
 				saidaRNA += Math.pow(2,n);
 			}
 		}
@@ -684,15 +690,18 @@ function fncIA_MLP_ExecutaAlgoritmoDeTesteOxidoNitroso(obj){
 			den_classe[obj.insts[i].classe]++;
                 }*/
 	}
-	if(saidaRNA == 0){
-            alert("Pouca poluição de OxidoNitroso!");
-        }
-        if(saidaRNA == 1){
-            alert("Média poluição de OxidoNitroso");
-        }
-        if(saidaRNA == 2){
-            alert("Muita poluição de OxidoNitroso");
-        }
+  if(saidaRNA == 0){
+      alert("Nenhuma poluição de OxidoNitroso");
+  }
+	if(saidaRNA == 1){
+      alert("Pouca poluição de OxidoNitroso!");
+  }
+  if(saidaRNA == 2){
+      alert("Média poluição de OxidoNitroso");
+  }
+  if(saidaRNA == 3){
+      alert("Muita poluição de OxidoNitroso");
+  }
 	/*
 	if (den_geral > 0.0) {
 		// Define o erro medio das classes.
@@ -750,145 +759,49 @@ function fncIA_MLP_sigmoide(valor) {
 	return (1.0 / (1.0 + Math.exp((-1.0) * valor)));
 }
 
-//Mostra valor objeto
-function mostrarProps(obj, nomeDoObj) {
-  var resultado = "";
-  for (var i in obj) {
-    if (obj.hasOwnProperty(i)) {
-        resultado += nomeDoObj + "." + i + " = " + obj[i] + "\n";
-    }
-  }
-  return resultado;
+function download(a, b){
+    var fileTransfer = new FileTransfer();
+    var uri = encodeURI(a);
+    var fileURL =  b;
+
+    fileTransfer.download(
+        uri, fileURL, function(entry) {
+            alert("download complete: " + entry.toURL());
+        },
+
+        function(error) {
+            alert("download error source " + error.source);
+            alert("download error target " + error.target);
+            alert("download error code" + error.code);
+        },
+
+        false, {
+            headers: {
+            "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
+            }
+        }
+    )
 }
-
-function downloadnox() {
-             var fileTransfer = new FileTransfer();
-             var uri = encodeURI("http://localdeprojetos.esy.es/classif/nox.class");
-             var fileURL =  "///sdcard/Android/data/com.greenengine.app/files/nox.txt";
-
-             fileTransfer.download(
-              uri, fileURL, function(entry) {
-                 alert("download complete: " + entry.toURL());
-              },
-
-              function(error) {
-                 alert("download error source " + error.source);
-                 alert("download error target " + error.target);
-                 alert("download error code" + error.code);
-              },
-
-              false, {
-                 headers: {
-                    "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-                 }
-              }
-           );
-        }
-function downloadamonia() {
-             var fileTransfer = new FileTransfer();
-             var uri = encodeURI("http://localdeprojetos.esy.es/classif/amonia.class");
-             var fileURL =  "///sdcard/Android/data/com.greenengine.app/files/amonia.txt";
-
-             fileTransfer.download(
-              uri, fileURL, function(entry) {
-                 alert("download complete: " + entry.toURL());
-              },
-
-              function(error) {
-                 alert("download error source " + error.source);
-                 alert("download error target " + error.target);
-                 alert("download error code" + error.code);
-              },
-
-              false, {
-                 headers: {
-                    "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-                 }
-              }
-           );
-        }
-function downloadoxidonitroso() {
-             var fileTransfer = new FileTransfer();
-             var uri = encodeURI("http://localdeprojetos.esy.es/classif/oxido_nitroso.class");
-             var fileURL =  "///sdcard/Android/data/com.greenengine.app/files/oxido_nitroso.txt";
-
-             fileTransfer.download(
-              uri, fileURL, function(entry) {
-                 alert("download complete: " + entry.toURL());
-              },
-
-              function(error) {
-                 alert("download error source " + error.source);
-                 alert("download error target " + error.target);
-                 alert("download error code" + error.code);
-              },
-
-              false, {
-                 headers: {
-                    "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-                 }
-              }
-           );
-        }
 
 function downloadfiles(){
-    downloadnox();
-    downloadamonia();
-    downloadoxidonitroso();
-}
+    var remoteFiles = ["http://greenengine.esy.es/MLP_BP/classif/saida_1.class", "http://greenengine.esy.es/MLP_BP/classif/saida_2.class", "http://greenengine.esy.es/MLP_BP/classif/saida_3.class"];
+    var destinyFiles= ["///sdcard/Android/data/com.greenengine.app/files/classif/mlp/saida_1.txt", "///sdcard/Android/data/com.greenengine.app/files/classif/mlp/saida_2.txt", "///sdcard/Android/data/com.greenengine.app/files/classif/mlp/saida_3.txt"];
 
-function executeProgram(){
-            fncIA_MLP_CarregaClassificadorNox();
-            fncIA_MLP_CarregaClassificadorAmonia();
-            fncIA_MLP_CarregaClassificadorOxidoNitroso();
+    var file;
+    var wayfile;
 
-            setTimeout(function(){
-                //alert("Numero camadas" + redeNeural0.num_camadas);
-
-                // ------> TESTE
-                //->Instancia para teste
-                //Spacvel(h-1)	Temp (ºC) O2(%) H2O(%) SO2(ppm) NO(ppm) NH3(ppm)         NOx NH3 N2O
-                var teste = new Object();
-                teste.insts = new Array();
-
-                for(i=0; i<1; i++){
-                    teste.insts[i] = new Object();
-                    teste.insts[i].atributos = new Array(50000.5, 150.0, 2.5, 10.0, 50.0, 1029.5, 1034.2);
-                    teste.insts[i].classe = 1;
-                    teste.insts[i].peso = 0.166;
-                }
-
-                teste.num_classes = 3;
-                teste.num_instancias = 1;
-                teste.num_atributos = 7;
-                teste.flagPesoSaida = true;
-                redeNeural0.flagPesoSaida = true;
-                redeNeural1.flagPesoSaida = true;
-                redeNeural2.flagPesoSaida = true;
-                // ------> FIM TESTE
-
-
-                fncIA_MLP_ExecutaAlgoritmoDeTesteNox(teste);
-                fncIA_MLP_ExecutaAlgoritmoDeTesteAmonia(teste);
-                fncIA_MLP_ExecutaAlgoritmoDeTesteOxidoNitroso(teste);
-                /*
-                for (b=0; b<redeNeural.num_camadas; b++) {
-                    for (c=0; c<redeNeural.qtd_neuronios[b]; c++) {
-                        for(d=0; d<4; d++){
-                            alert("Camada: " + b + " -> Neuronio: " + c + " -> peso" + d + ": " + redeNeural.rede[b][c].w[d] + "Com bias: " + redeNeural.rede[b][c].bias);
-                        }
-                    }
-                }*/
-
-            }, 300);
-
+    while(remoteFiles.length != 0){
+        file = remoteFiles.shift();
+        wayfile = destinyFiles.shift();
+        download(file, wayfile);
+    }
 }
 
 function executeProgramWithTrueData(a,b,c,d,e,f,g){
             fncIA_MLP_CarregaClassificadorNox();
             fncIA_MLP_CarregaClassificadorAmonia();
             fncIA_MLP_CarregaClassificadorOxidoNitroso();
-            
+
             setTimeout(function(){
                 //alert("Numero camadas" + redeNeural0.num_camadas);
 
@@ -901,11 +814,9 @@ function executeProgramWithTrueData(a,b,c,d,e,f,g){
                 for(i=0; i<1; i++){
                     teste.insts[i] = new Object();
                     teste.insts[i].atributos = new Array(a,b,c,d,e,f,g);
-                    teste.insts[i].classe = 1;
-                    teste.insts[i].peso = 0.166;
                 }
 
-                teste.num_classes = 3;
+                teste.num_classes = 4;
                 teste.num_instancias = 1;
                 teste.num_atributos = 7;
                 teste.flagPesoSaida = true;

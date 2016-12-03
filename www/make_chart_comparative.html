@@ -118,29 +118,35 @@
 
         //jquery com ajax
         function executarTeste() {
+          alert("Entrou no teste");
             $(document).ready(function() {
                 $.ajax({
                     type: "GET",
-                        url: "http://greenengine.esy.es/maximus.php",
+                        url: "http://greenengine.esy.es/pega_maiorValor.php",
                         crossDomain: true,
                         cache: false,
-                        dataType: 'json',
+                        dataType: "json",
+                        //beforeSend: function() { alert("Carregando..."); //Carregando
+                        //},
+                        //error: function() { alert("Há algum problema com a fonte de dados");
+                        //},
                         success: function(result){
-                            var result=$.parseJSON(result);
-                            normalizado_a = document.getElementById('#velocidade_espacial').value() /result.max_velocidade_espacial;
-                            normalizado_b = document.getElementById('#temperatura').value() /result.max_temperatura;
-                            normalizado_c = document.getElementById('#oxigenio').value() /result.max_oxigenio;
-                            normalizado_d = document.getElementById('#agua').value() /result.max_agua;
-                            normalizado_e = document.getElementById('#dioxido_de_enxofre').value() /result.max_dioxido_de_enxofre;
-                            normalizado_f = document.getElementById('#oxido_nitrico').value() /result.max_oxido_nitrico;
-                            normalizado_g = document.getElementById('#amonia').value() /result.max_amonia;
+                            //var result=$.parseJSON(result);
+                            normalizado_a = $('#velocidade_espacial').val() /result.max_velocidade_espacial;
+                            normalizado_b = $('#temperatura').val() /result.max_temperatura;
+                            normalizado_c = $('#oxigenio').val() /result.max_oxigenio;
+                            normalizado_d = $('#agua').val() /result.max_agua;
+                            normalizado_e = $('#dioxido_de_enxofre').val() /result.max_dioxido_de_enxofre;
+                            normalizado_f = $('#oxido_nitrico').val() /result.max_oxido_nitrico;
+                            normalizado_g = $('#amonia').val() /result.max_amonia;
+                            //alert("Vel: "+ normalizado_a + " temp: "+ normalizado_b + " ox: " + normalizado_c + " agua: " + normalizado_d + "de: " + normalizado_e + "oxidn: " + normalizado_f + "amon: " + normalizado_g);
+                            executeProgramWithTrueData(normalizado_a,normalizado_b,normalizado_c,normalizado_d,normalizado_e,normalizado_f,normalizado_g);
                         }
                 });
             });
-              //alert("Vel: "+ normalizado_a + " temp: "+ normalizado_b + " ox: " + normalizado_c + " agua: " + normalizado_d + "de: " + normalizado_e + "oxidn: " + normalizado_f + "amon: " + normalizado_g);
+            //alert("Vel: "+ normalizado_a + " temp: "+ normalizado_b + " ox: " + normalizado_c + " agua: " + normalizado_d + "de: " + normalizado_e + "oxidn: " + normalizado_f + "amon: " + normalizado_g);
 
-            executeProgramWithTrueData(normalizado_a,normalizado_b,normalizado_c,normalizado_d,normalizado_e,normalizado_f,normalizado_g);
-        }
+    }
 
     </script>
 

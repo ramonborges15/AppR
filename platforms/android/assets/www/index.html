@@ -10,44 +10,25 @@
 
     <link rel="stylesheet" type="text/css" href="css/phonon.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/jquery-2.2.4.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript">
-        function Chart(){
-          window.location.href="make_chart_comparative.html";
-        }
-    </script>
+
+    <!-- Resources Charts -->
+    <script type="text/javascript" src="js/amcharts.js"></script>
+    <script type="text/javascript" src="js/serial.js"></script>
+    <script type="text/javascript" src="js/export.min.js"></script>
+    <link rel="stylesheet" href="css/export.css" type="text/css" media="all" />
+    <script type="text/javascript" src="js/light.js"></script>
+
+    <!-- Responsavel por criar os graficos -->
+    <script type="text/javascript" src="js/make_chart.js"></script>
 
     <script type="text/javascript">
-
-        var normalizado_a, normalizado_b, normalizado_c, normalizado_d;
-        var normalizado_e, normalizado_f, normalizado_g;
-        //jquery
-
-        function executarTeste() {
-            $(document).ready(function() {
-                $.ajax({
-                    type: "GET",
-                        url: "http://greenengine.esy.es/maximus.php",
-                        crossDomain: true,
-                        cache: false,
-                        success: function(result){
-                            var result=$.parseJSON(result);
-                            normalizado_a = document.getElementById('#ve').value() /result.max_velocidade_espacial;
-                            normalizado_b = document.getElementById('#temp').value() /result.max_temperatura;
-                            normalizado_c = document.getElementById('#ox').value() /result.max_oxigenio;
-                            normalizado_d = document.getElementById('#agua').value() /result.max_agua;
-                            normalizado_e = document.getElementById('#de').value() /result.max_dioxido_de_enxofre;
-                            normalizado_f = document.getElementById('#oxidn').value() /result.max_oxido_nitrico;
-                            normalizado_g = document.getElementById('#amon').value() /result.max_amonia;
-                        }
-                    });
-            });
-              //alert("Vel: "+ normalizado_a + " temp: "+ normalizado_b + " ox: " + normalizado_c + " agua: " + normalizado_d + "de: " + normalizado_e + "oxidn: " + normalizado_f + "amon: " + normalizado_g);
-
-            executeProgramWithTrueData(normalizado_a,normalizado_b,normalizado_c,normalizado_d,normalizado_e,normalizado_f,normalizado_g);
+        function nextpage() {
+            window.location.href = "make_chart_comparative.html";
         }
 
     </script>
@@ -56,136 +37,47 @@
 
 <body>
 
-  <!-- Formulário para o Teste-->
-  <div id="full-panel-example" class="panel-full">
-      <header class="header-bar" id="colorMain">
-          <button class="btn pull-right icon icon-close" data-panel-close="true"></button>
-          <div class="center">
-              <h1 class="title">Teste</h1>
-          </div>
-      </header>
-
-      <div class="content">
-        <div class="padded-full">
-
-          <div class="text-center">
-            <h2 class="title">Insira as informações abaixo:</h2>
-          </div>
-
-          <div class="row text">
-            <div class="phone-5 column"><label>Velocidade Espacial:</label></div>
-            <div class="phone-7 column">
-              <input class="border-color" type="number" id="ve" required="required">
-            </div>
-          </div>
-
-          <div class="row text">
-            <div class="phone-5 column"><label>Temperatura:</label></div>
-            <div class="phone-7 column">
-              <input type="number" id="temp" required="required" min="0" max="100" pattern="[0-9]+$">
-            </div>
-          </div>
-
-          <div class="row text">
-            <div class="phone-5 column"><label>Oxigênio:</label></div>
-            <div class="phone-7 column">
-              <input type="number" id="ox" required="required" min="0" max="100" pattern="[0-9]+$">
-            </div>
-          </div>
-
-          <div class="row text">
-            <div class="phone-5 column"><label>Água:</label></div>
-            <div class="phone-7 column">
-              <input type="number" id="agua" required="required" min="0" max="100" pattern="[0-9]+$">
-            </div>
-          </div>
-
-          <div class="row text">
-            <div class="phone-5 column"><label>Dióxido de Enxofre:</label></div>
-            <div class="phone-7 column">
-              <input type="number" id="de" required="required" min="0" max="100" pattern="[0-9]+$">
-            </div>
-          </div>
-
-          <div class="row text">
-            <div class="phone-5 column"><label>Óxido Nítrico:</label></div>
-            <div class="phone-7 column">
-              <input type="number" id="oxidn" required="required" pattern="[0-9]+$">
-            </div>
-          </div>
-
-          <div class="row text">
-            <div class="phone-5 column"><label>Amônia:</label></div>
-            <div class="phone-7 column">
-              <input type="number" id="amon" required="required" pattern="[0-9]+$">
-            </div>
-          </div>
-
-
-          <br/>
-          <!-- Butão para finalizar cadastro-->
-          <div class="padded-full">
-            <button type="submit" class="btn fit-parent" onclick="executarTeste()">Testar</button>
-          </div>
-
-        </div>
-      </div>
-  </div>
-  <!-- -->
-
   <home data-page="true">
     <!-- Barra Superior -->
     <div class="header-bar" id="colorMain">
-        <!-- <a class="btn pull-left" data-panel-id="full-panel-example">Teste</a>-->
         <div class="center">
             <h1 class="title">Green Engine</h1>
         </div>
-        <!--
-        <button class="btn pull-right icon icon-menu" data-popover-id="my-popover"></button>
-        -->
     </div>
 
     <br/><br/>
 
-    <!-- Conteúdo -->
+
+    <!-- Conteúdo da página está dentro desta div. Esta é a página principal-->
     <div class="content">
-        <!--
-        <div class="popover" id="my-popover">
-            <ul class="list">
-                <li><a class="padded-list" href="#"></a></li>
-                <li><a class="padded-list" href="readjson.html">Ler Dados</a></li>
-                <li><a class="padded-list" href="make_chart.html">Gerar Gráficos</a></li>
-            </ul>
-        </div>
-        -->
+        <!-- padded-full permite que agente use toda a tela-->
         <div class="padded-full">
+            <!--Adicionei uma linha para por o logo -->
             <div class="row text-center">
                 <img src="img/logogreen1.png" alt="EngineGreen">
             </div>
-            <br/>
-            <br/>
+
+            <br/><br/>
+
             <div class="row text-center">
-                <!--<button class="btn fit-parent" id="colorMain" onclick="Cadastrar()">Cadastrar Info Carro</button>
-                -->
-                <button class="btn fit-parent" data-panel-id="full-panel-example">Teste</button>
-            </div><br/>
-            <div class="row text-center">
-              <button class="btn fit-parent" onclick="downloadfiles()">Atualizar Classificador</button>
-            </div><br />
-            <!-- Função dentro do index.js-->
-            <div class="row text-center">
-              <!-- <button class="btn fit-parent" id="colorMain" onclick="executeProgram()">Executa Teste</button><br><br>
-              -->
-              <button class="btn fit-parent" onclick="Chart()">Gráficos</button>
+                <button class="btn fit-parent" onclick="nextpage()">Executar</button>
             </div>
-          <br/>
-          <!--
-            <div class="row text-center">
-                <button class="btn primary">Cadastrar Info Motor</button>
-                <a href="form_model_engine.html" class="btn primary" data-panel-id="myPanelexample">Cadastrar Info Motor</a>
-            </div> -->
+
+            <br/><br/><br/><br/><br/>
+
+            <div class="row">
+                <button class="btn" onclick="downloadfiles()"><img src="img/icloud.png"></button>
+            </div>
+
         </div>
     </div>
+
+    <div class="footer">
+        <ul class="list">
+            <li class="divider"></li>
+        </ul>
+    </div>
+
   </div>
 
     <script type="text/javascript">
@@ -196,16 +88,18 @@
     <script src="js/popovers.js"></script>
 
     <script src="js/panels.js"></script>
+    <script src="js/dialogs.js"></script>
 
     <script>
 
         phonon.options({
             navigator: {
-                defaultPage: 'home'
+                defaultPage: 'home',
             },
             i18n: null
         });
-        phonon.navigator().start();
+        var app = phonon.navigator();
+        app.start();
 
     </script>
 
