@@ -118,7 +118,6 @@
 
         //jquery com ajax
         function executarTeste() {
-          alert("Entrou no teste");
             $(document).ready(function() {
                 $.ajax({
                     type: "GET",
@@ -126,10 +125,10 @@
                         crossDomain: true,
                         cache: false,
                         dataType: "json",
-                        //beforeSend: function() { alert("Carregando..."); //Carregando
-                        //},
-                        //error: function() { alert("Há algum problema com a fonte de dados");
-                        //},
+                        beforeSend: function() { alert("Carregando..."); //Carregando
+                        },
+                        error: function() { alert("Há algum problema com a fonte de dados");
+                        },
                         success: function(result){
                             //var result=$.parseJSON(result);
                             normalizado_a = $('#velocidade_espacial').val() /result.max_velocidade_espacial;
@@ -147,7 +146,82 @@
             //alert("Vel: "+ normalizado_a + " temp: "+ normalizado_b + " ox: " + normalizado_c + " agua: " + normalizado_d + "de: " + normalizado_e + "oxidn: " + normalizado_f + "amon: " + normalizado_g);
 
     }
+    </script>
 
+    <script type="text/javascript">
+
+        var normalizado_a, normalizado_b, normalizado_c, normalizado_d;
+        var normalizado_e, normalizado_f, normalizado_g;
+
+        //jquery com ajax
+        function kmeans() {
+          alert("Entrou no kmeans");
+            $(document).ready(function() {
+                $.ajax({
+                    type: "GET",
+                        url: "http://greenengine.esy.es/pega_maiorValor.php",
+                        crossDomain: true,
+                        cache: false,
+                        dataType: "json",
+                        beforeSend: function() { alert("Carregando..."); //Carregando
+                        },
+                        error: function() { alert("Há algum problema com a fonte de dados");
+                        },
+                        success: function(result){
+                            //var result=$.parseJSON(result);
+                            normalizado_a = $('#velocidade_espacial').val() /result.max_velocidade_espacial;
+                            normalizado_b = $('#temperatura').val() /result.max_temperatura;
+                            normalizado_c = $('#oxigenio').val() /result.max_oxigenio;
+                            normalizado_d = $('#agua').val() /result.max_agua;
+                            normalizado_e = $('#dioxido_de_enxofre').val() /result.max_dioxido_de_enxofre;
+                            normalizado_f = $('#oxido_nitrico').val() /result.max_oxido_nitrico;
+                            normalizado_g = $('#amonia').val() /result.max_amonia;
+                            //alert("Vel: "+ normalizado_a + " temp: "+ normalizado_b + " ox: " + normalizado_c + " agua: " + normalizado_d + "de: " + normalizado_e + "oxidn: " + normalizado_f + "amon: " + normalizado_g);
+                            executeKmeans(normalizado_a,normalizado_b,normalizado_c,normalizado_d,normalizado_e,normalizado_f,normalizado_g);
+                        }
+                });
+            });
+            //alert("Vel: "+ normalizado_a + " temp: "+ normalizado_b + " ox: " + normalizado_c + " agua: " + normalizado_d + "de: " + normalizado_e + "oxidn: " + normalizado_f + "amon: " + normalizado_g);
+
+    }
+    </script>
+
+    <script type="text/javascript">
+
+        var normalizado_a, normalizado_b, normalizado_c, normalizado_d;
+        var normalizado_e, normalizado_f, normalizado_g;
+
+        //jquery com ajax
+        function rbckmeans() {
+          alert("Entrou no rbc-kmeans");
+            $(document).ready(function() {
+                $.ajax({
+                    type: "GET",
+                        url: "http://greenengine.esy.es/pega_maiorValor.php",
+                        crossDomain: true,
+                        cache: false,
+                        dataType: "json",
+                        beforeSend: function() { alert("Carregando..."); //Carregando
+                        },
+                        error: function() { alert("Há algum problema com a fonte de dados");
+                        },
+                        success: function(result){
+                            //var result=$.parseJSON(result);
+                            normalizado_a = $('#velocidade_espacial').val() /result.max_velocidade_espacial;
+                            normalizado_b = $('#temperatura').val() /result.max_temperatura;
+                            normalizado_c = $('#oxigenio').val() /result.max_oxigenio;
+                            normalizado_d = $('#agua').val() /result.max_agua;
+                            normalizado_e = $('#dioxido_de_enxofre').val() /result.max_dioxido_de_enxofre;
+                            normalizado_f = $('#oxido_nitrico').val() /result.max_oxido_nitrico;
+                            normalizado_g = $('#amonia').val() /result.max_amonia;
+                            //alert("Vel: "+ normalizado_a + " temp: "+ normalizado_b + " ox: " + normalizado_c + " agua: " + normalizado_d + "de: " + normalizado_e + "oxidn: " + normalizado_f + "amon: " + normalizado_g);
+                            executeRBCKmeans(normalizado_a,normalizado_b,normalizado_c,normalizado_d,normalizado_e,normalizado_f,normalizado_g);
+                        }
+                });
+            });
+            //alert("Vel: "+ normalizado_a + " temp: "+ normalizado_b + " ox: " + normalizado_c + " agua: " + normalizado_d + "de: " + normalizado_e + "oxidn: " + normalizado_f + "amon: " + normalizado_g);
+
+    }
     </script>
 
 </head>
@@ -243,6 +317,12 @@
                         </div>
                         <div class="padded-full">
                             <input type="submit" class="btn fit-parent" onclick="Chart()" id="buttonGerar" value="Gerar Gráficos"/>
+                        </div>
+                        <div class="padded-full">
+                            <button type="submit" class="btn fit-parent" onclick="kmeans()">Testar Kmeans</button>
+                        </div>
+                        <div class="padded-full">
+                            <button type="submit" class="btn fit-parent" onclick="rbckmeans()">Testar RBC-Kmeans</button>
                         </div>
                     </div>
                 </div>
