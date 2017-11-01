@@ -24,6 +24,6 @@ cada etapa. O link do vı́deo está em
 É possı́vel também realizar o download do aplicativo para dispositivos android no site
       http://greenengine.esy.es/
 
-![Screen Shot](www/img/Tela Inicial.png)
+![Screen Shot](www/img/TelaInicial.png)
 ![Screen Shot](www/img/tela3.png)
 ![Screen Shot](www/img/Formulários.png)
