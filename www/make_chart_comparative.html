@@ -28,26 +28,51 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
+
+            $("#Area1").hide();
+            $("#Area2").hide();
+            $("#Area3").hide();
+
             $("#buttonGerar").click(function(){
-                $("#buttonGerar").val('Gerando...');
+                $("#buttonGerar").val('Processando...');
                 setTimeout(function(){
-                    $("#buttonGerar").val('Gerar Novamente');
+                    $("#buttonGerar").val('Processar Novamente');
                 } ,5000);
 
             });
         });
 
+        function Esconder(){
+            $("#Area1").hide();
+            $("#Area2").hide();
+            $("#Area3").hide();
+        }
+
+        //Responsavel por retornar ao formulario e manter os dados digitados sem perder
+        //as informacoes que foram digitadas.
+        function mostrarFormulario(){
+            $(document).ready(function() {
+                $("#main").show();
+                $("#voltar_form").hide();
+                $("#chartdiv1").hide();
+                $("#chartdiv2").hide();
+                $("#chartdiv3").hide();
+                $("#chartdiv4").hide();
+                $("#chartdiv5").hide();
+                $("#chartdiv6").hide();
+                $("#chartdiv7").hide();
+            });
+        }
+
         //Jquery com ajax
         function Chart(){
-
-
             $(document).ready(function() {
 
                 /*Responsavel por enviar os dados do formulario para o servidor*/
                 $.ajax({
                     type: "POST",
                     url: "http://greenengine.esy.es/RBC/grava_json.php",
-                    dataType: 'json',
+                    dataType: "json",
                     crossDomain: true,
                     cache: false,
                     data: {
@@ -63,6 +88,7 @@
             })
 
             gerarGrafico();
+            executarTeste();
         }
 
         function expand1() {
@@ -115,46 +141,72 @@
 
         var normalizado_a, normalizado_b, normalizado_c, normalizado_d;
         var normalizado_e, normalizado_f, normalizado_g;
-
         //jquery com ajax
         function executarTeste() {
+
             $(document).ready(function() {
                 $.ajax({
                     type: "GET",
-                        url: "http://greenengine.esy.es/maximus.php",
+                        url: "http://greenengine.esy.es/pega_maiorValor.php",
                         crossDomain: true,
                         cache: false,
-                        dataType: 'json',
+                        dataType: "json",
                         success: function(result){
-                            var result=$.parseJSON(result);
-                            normalizado_a = document.getElementById('#velocidade_espacial').value() /result.max_velocidade_espacial;
-                            normalizado_b = document.getElementById('#temperatura').value() /result.max_temperatura;
-                            normalizado_c = document.getElementById('#oxigenio').value() /result.max_oxigenio;
-                            normalizado_d = document.getElementById('#agua').value() /result.max_agua;
-                            normalizado_e = document.getElementById('#dioxido_de_enxofre').value() /result.max_dioxido_de_enxofre;
-                            normalizado_f = document.getElementById('#oxido_nitrico').value() /result.max_oxido_nitrico;
-                            normalizado_g = document.getElementById('#amonia').value() /result.max_amonia;
+                            //var result=$.parseJSON(result);
+                            normalizado_a = $('#velocidade_espacial').val() /result.max_velocidade_espacial;
+                            normalizado_b = $('#temperatura').val() /result.max_temperatura;
+                            normalizado_c = $('#oxigenio').val() /result.max_oxigenio;
+                            normalizado_d = $('#agua').val() /result.max_agua;
+                            normalizado_e = $('#dioxido_de_enxofre').val() /result.max_dioxido_de_enxofre;
+                            normalizado_f = $('#oxido_nitrico').val() /result.max_oxido_nitrico;
+                            normalizado_g = $('#amonia').val() /result.max_amonia;
                         }
+
                 });
+                executeProgramWithTrueData(normalizado_a,normalizado_b,normalizado_c,normalizado_d,normalizado_e,normalizado_f,normalizado_g);
+                executeKmeans(normalizado_a,normalizado_b,normalizado_c,normalizado_d,normalizado_e,normalizado_f,normalizado_g);
+                executeRBCKmeans(normalizado_a,normalizado_b,normalizado_c,normalizado_d,normalizado_e,normalizado_f,normalizado_g);
+
             });
+
               //alert("Vel: "+ normalizado_a + " temp: "+ normalizado_b + " ox: " + normalizado_c + " agua: " + normalizado_d + "de: " + normalizado_e + "oxidn: " + normalizado_f + "amon: " + normalizado_g);
 
-            executeProgramWithTrueData(normalizado_a,normalizado_b,normalizado_c,normalizado_d,normalizado_e,normalizado_f,normalizado_g);
+            //var retorno =
+            //a = retorno/100 - retorno%100;
+            //b = (retorno-a*100)/10 - (retorno-a*100)%10;
+            //c = (retorno - a*100 - b*10);
+            //alert(retorno);
+            //alert(normalizado_a);
         }
 
     </script>
 
 </head>
 
-<body>
+<body class="scrollbar">
 
   <home data-page="true">
     <!-- Barra Superior -->
     <div class="header-bar" id="colorMain">
-        <a class="btn pull-left icon icon-home" href="index.html"></a>
+        <div id="voltar_form">
+            <a class="btn pull-left icon icon-arrow-back" onclick="mostrarFormulario();Esconder();"></a>
+        </div>
+
         <div class="center">
             <h1 class="title">Green Engine</h1>
         </div>
+
+        <div id="voltar_menu">
+            <a class="btn pull-right icon icon-home" href="index.html"></a>
+        </div>
+    </div>
+    <div id="Area3">
+        <nav class="tabs header-tabs">
+            <div class="tab-items">
+                <a class="tab-item" href="#Area1" id="colorIcon"><i class="icon icon-check"></i>RBC</a>
+                <!-- <a class="tab-item" href="#Area2" id="colorIcon"><i class="icon icon-check"></i>RBC+KMeans</a> -->
+            </div>
+        </nav>
     </div>
 
     <br/><br/>
@@ -180,49 +232,49 @@
                         <div class="row text">
                             <div class="phone-8 column"><label>Velocidade Espacial(h^-1):</label></div>
                             <div class="phone-4 column">
-                                <input class="border-color" type="number" id="velocidade_espacial" required="required">
+                                <input class="border-color" type="number" step="any" id="velocidade_espacial" min="0" required="required">
                             </div>
                         </div>
 
                         <div class="row text">
                             <div class="phone-8 column"><label>Temperatura (ºC):</label></div>
                             <div class="phone-4 column">
-                                <input type="number" id="temperatura" required="required" min="0" max="600" pattern="[0-9]+$">
+                                <input type="number" step="any" id="temperatura" required="required" min="0" max="600" pattern="[0-9]+$">
                             </div>
                         </div>
 
                         <div class="row text">
                             <div class="phone-8 column"><label>Oxigênio (%):</label></div>
                             <div class="phone-4 column">
-                                <input type="number" id="oxigenio" required="required" min="0" max="100" pattern="[0-9]+$">
+                                <input type="number" step="any" id="oxigenio" required="required" min="0" max="100" pattern="[0-9]+$">
                             </div>
                         </div>
 
                         <div class="row text">
                             <div class="phone-8 column"><label>Água (%):</label></div>
                             <div class="phone-4 column">
-                                <input type="number" id="agua" required="required" min="0" max="100" pattern="[0-9]+$">
+                                <input type="number" step="any" id="agua" required="required" min="0" max="100" pattern="[0-9]+$">
                             </div>
                         </div>
 
                         <div class="row text">
                             <div class="phone-8 column"><label>Dióxido de Enxofre (ppm):</label></div>
                             <div class="phone-4 column">
-                                <input type="number" id="dioxido_de_enxofre" required="required" min="0" max="100" pattern="[0-9]+$">
+                                <input type="number" step="any" id="dioxido_de_enxofre" required="required" min="0" pattern="[0-9]+$">
                             </div>
                         </div>
 
                         <div class="row text">
                             <div class="phone-8 column"><label>Óxido Nítrico (ppm):</label></div>
                             <div class="phone-4 column">
-                                <input type="number" id="oxido_nitrico" required="required" pattern="[0-9]+$">
+                                <input type="number" step="any" id="oxido_nitrico" required="required" min="0" pattern="[0-9]+$">
                             </div>
                         </div>
 
                         <div class="row text">
                             <div class="phone-8 column"><label>Amônia (ppm):</label></div>
                             <div class="phone-4 column">
-                                <input type="number" id="amonia" required="required" pattern="[0-9]+$">
+                                <input type="number" step="any" id="amonia" required="required" min="0" pattern="[0-9]+$">
                             </div>
                         </div>
                     </div>
@@ -232,11 +284,9 @@
                 <!-- Botões para teste e gerar gráfico-->
                 <div class="w3-panel w3-card-2">
                     <div class="cardMenu">
+
                         <div class="padded-full">
-                            <button type="submit" class="btn fit-parent" onclick="executarTeste()">Testar</button>
-                        </div>
-                        <div class="padded-full">
-                            <input type="submit" class="btn fit-parent" onclick="Chart()" id="buttonGerar" value="Gerar Gráficos"/>
+                            <input type="submit" class="btn fit-parent" onclick="Chart()" id="buttonGerar" value="Processar Valores"/>
                         </div>
                     </div>
                 </div>
@@ -250,19 +300,40 @@
             <div class="chart-block">
                 <div class="row text-center">
                     <div class="phone-12 column">
-                        <div class="w3-panel w3-card-2">
-                            <div class="graph">
-                                <div id="chartdiv1" onclick="expand1()"></div>
-                                <div id="chartdiv2" onclick="expand2()"></div>
-                                <div id="chartdiv3" onclick="expand3()"></div>
-                                <div id="chartdiv4" onclick="expand4()"></div>
-                                <div id="chartdiv5" onclick="expand5()"></div>
-                                <div id="chartdiv6" onclick="expand6()"></div>
-                                <div id="chartdiv7" onclick="expand7()"></div>
+
+                        <div id="Area1">
+                            <div class="w3-panel w3-card-2">
+                                <h1>RBC</h1>
+                                <div class="graph">
+                                    <div id="chartdiv1" onclick="expand1()"></div>
+                                    <div id="chartdiv2" onclick="expand2()"></div>
+                                    <div id="chartdiv3" onclick="expand3()"></div>
+                                    <div id="chartdiv4" onclick="expand4()"></div>
+                                    <div id="chartdiv5" onclick="expand5()"></div>
+                                    <div id="chartdiv6" onclick="expand6()"></div>
+                                    <div id="chartdiv7" onclick="expand7()"></div>
+                                </div>
                             </div>
                         </div>
+                        <br>
+                        <br>
+                        <!--
+                        <div id="Area2">
+                            <div class="w3-panel w3-card-2">
+                                <h1>RBC+KMeans</h1>
+                                <div class="card">
+                                    <br><br><br><br><br><br>
+                                    <br><br><br><br><br>
+                                    <br><br><br><br><br>
+                                </div>
+                            </div>
+                            <br><br><br><br><br><br>
+                        </div> -->
+
 
                     </div>
+
+
                 </div>
             </div>
 

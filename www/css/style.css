@@ -16,8 +16,8 @@
 #colorMain{
   background-color: #008000;
   color: white;
-
 }
+
 
 .btn {
   background-color: #008000;
@@ -35,9 +35,41 @@
     margin-bottom: 0;
 }
 
+#colorBackgroundAbout {
+    background-color: green;
+    height: 100%;
+}
+
 #backgroundStyle {
     background: #DCDCDC;
     background: linear-gradient(#DCDCDC, #3CB371);
+}
+
+#picture img{
+    border: 3px solid #ddd;
+    border-radius: 50%;
+    height: 90px;
+    width: 90px;
+    margin: auto; /*centralizando imagem*/
+}
+
+#picture{
+    text-align: center;
+}
+
+div h1, #picture h5, .row h5, div p{
+    color: white;
+    text-align: center;
+}
+
+#colorIcon{
+    color: #008000;
+    background-color: black;
+    opacity: 0.7;
+}
+
+#Area2 p{
+    color: black;
 }
 
 .footer {

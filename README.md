@@ -1,69 +1,29 @@
-# Hello World PhoneGap Template [![bitHound Score][bithound-img]][bithound-url]
+# GreenEngine App
 
-A PhoneGap Hello World template
+![Screen Shot](www/img/logogreen1.png)
 
-## Usage
+Aplicativo **(Android)** que realiza a classificação do nı́vel de poluentes presentes em um motor utilizando técnicas classificatórias de inteligência artificial.
 
-#### PhoneGap CLI
+## Sobre
 
-The hello-world template is the default when you create a new application using the [phonegap-cli][phonegap-cli-url].
+#### Técnicas Utilizadas
 
-    phonegap create my-app
+Utilizar técnicas classificatórias de aprendizagem de
+máquina e de agrupamento, sendo elas a **rede neural artificial**, o **raciocı́nio baseado em casos** e o **k-means**, para determinar se um motor com determinadas especificações terá um
+nı́vel de emissão de poluentes dentro do padrão. Isso permitirá que modificações sejam realizadas no motor para adequação em caso de nı́veis excedentes da concentração de um
+poluente resultando assim na redução de poluentes.
 
-Create an app using this template specifically:
+#### Funcionamento
 
-    phonegap create my-app --template hello-world
+Foi desenvolvido também um vı́deo explicativo de todo o funcionamento e modo de uso deste aplicativo. Ele apresenta um passo a passo mostrando aquilo que é necessário em
+cada etapa. O link do vı́deo está em    
+      https://www.youtube.com/watch?v=rxssbRUi5G8
 
-To see a list of other available PhoneGap templates:
+#### Download
 
-    phonegap template list
+É possı́vel também realizar o download do aplicativo para dispositivos android no site
+      http://greenengine.esy.es/
 
-## [config.xml][config-xml]
-
-#### android-minSdkVersion (Android only)
-
-Minimum SDK version supported on the target device. Maximum version is blank by default.
-
-This template sets the minimum to `14`.
-
-    <preference name="android-minSdkVersion" value="14" />
-
-#### &lt;access ...&gt; (All)
-
-This template defaults to wide open access.
-
-    <access origin="*" />
-
-It is strongly encouraged that you restrict access to external resources in your application before releasing to production.
-
-For more information on whitelist configuration, see the [Cordova Whitelist Guide][cordova-whitelist-guide] and the [Cordova Whitelist Plugin documentation][cordova-plugin-whitelist]
-
-## [www/index.html][index-html]
-
-#### Content Security Policy (CSP)
-
-The default CSP is similarly open:
-
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
-
-Much like the access tag above, you are strongly encouraged to use a more restrictive CSP in production.
-
-A good starting point declaration might be:
-
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" />
-
-For more information on the Content Security Policy, see the [section on CSP in the Cordova Whitelist Plugin documentation][cordova-plugin-whitelist-csp].
-
-Another good resource for generating a good CSP declaration is [CSP is Awesome][csp-is-awesome]
-
-
-[phonegap-cli-url]: http://github.com/phonegap/phonegap-cli
-[cordova-app]: http://github.com/apache/cordova-app-hello-world
-[bithound-img]: https://www.bithound.io/github/phonegap/phonegap-app-hello-world/badges/score.svg
-[bithound-url]: https://www.bithound.io/github/phonegap/phonegap-app-hello-world
-[config-xml]: https://github.com/phonegap/phonegap-template-hello-world/blob/master/config.xml
-[index-html]: https://github.com/phonegap/phonegap-template-hello-world/blob/master/www/index.html
-[cordova-whitelist-guide]: https://cordova.apache.org/docs/en/dev/guide/appdev/whitelist/index.html
-[cordova-plugin-whitelist]: http://cordova.apache.org/docs/en/latest/reference/cordova-plugin-whitelist
-[cordova-plugin-whitelist-csp]: http://cordova.apache.org/docs/en/latest/reference/cordova-plugin-whitelist#content-security-policy
-[csp-is-awesome]: http://cspisawesome.com
+![Screen Shot](www/img/Tela Inicial.png)
+![Screen Shot](www/img/tela3.png)
+![Screen Shot](www/img/Formulários.png)
